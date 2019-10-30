@@ -136,3 +136,6 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Django settings configs
+backend/GymStrength/settings/config
