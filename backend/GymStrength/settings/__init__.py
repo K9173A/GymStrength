@@ -2,7 +2,6 @@
 Chooses which settings should be imported depending on existence of environment
 variable.
 """
-from .base import *
 from .mode import MODE
 
 

@@ -2,11 +2,12 @@
 This module implements settings used for development purposes.
 Consider using it in your testing environment.
 """
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+from .base import *
 
-# ============================================================================
-# Email
-# ============================================================================
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '../media')
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = '1025'
 EMAIL_HOST_USER = 'admin@gymstrength.local'
