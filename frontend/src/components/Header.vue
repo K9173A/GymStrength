@@ -67,22 +67,20 @@ export default {
 .btn-user {
   height: 100%;
   width: 64px;
+  border: none;
+  box-shadow: inset 0 0 3px #000000;
 }
 
 .btn-search {
-  border: 2px solid #dcdcdc;
-  color: #dcdcdc;
+  background-color: #dcdcdc;
   &:hover {
-    border: 2px solid #f0f0f0;
-    color: #f0f0f0;
+    background-color: #f0f0f0;
   }
 }
 .btn-user {
-  border: 2px solid #02c316;
-  color: #02c316;
+  background-color: #02c316;
   &:hover {
-    border: 2px solid #02dc16;
-    color: #02dc16;
+    background-color: #02dc16;
   }
 }
 
