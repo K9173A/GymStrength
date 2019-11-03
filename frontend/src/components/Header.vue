@@ -1,20 +1,30 @@
 <template>
-<nav class="navbar navbar-expand-lg p-3 menu">
-  <router-link :to="{ name: 'index' }" class="navbar-brand">
-    <img src="@/assets/img/logo.png" class="menu__logo" alt="logo">
-  </router-link>
-  <ul class="nav navbar-nav mx-auto">
-    <li>
-      <router-link :to="{ name: 'index' }" class="nav-link text-uppercase mx-2 menu__item">
-        Main
-      </router-link>
-    </li>
-    <li>
-      <router-link :to="{ name: 'plan' }" class="nav-link text-uppercase mx-2 menu__item">
-        Training plan
-      </router-link>
-    </li>
-  </ul>
+<nav class="navbar navbar-expand-lg fixed-top shadow-sm menu">
+  <div class="container">
+    <router-link :to="{ name: 'index' }" class="col-xs-3 navbar-brand">
+      <img src="@/assets/img/logo.png" class="menu__logo" alt="logo">
+    </router-link>
+    <ul class="col-xs-6 navbar-nav mx-auto">
+      <li class="nav-item">
+        <router-link :to="{ name: 'index' }" class="nav-link menu__item">
+          Main
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link :to="{ name: 'plan' }" class="nav-link menu__item">
+          Training plan
+        </router-link>
+      </li>
+    </ul>
+    <div class="col-xs-3 btn-group">
+      <a href="#" class="btn btn-sign-up">
+        Sign Up
+      </a>
+      <a href="#" class="btn btn-sign-in">
+        Sign In
+      </a>
+    </div>
+  </div>
 </nav>
 </template>
 
@@ -28,17 +38,17 @@ export default {
 .menu {
   padding-top: 16px;
   padding-bottom: 16px;
-  background-color: #2c61c3;
+  background-color: rgba(0, 78, 195, 0.68);
 
   @at-root #{&}__item {
     min-width: 64px;
     font-size: 1.25rem;
     font-weight: 800;
+    text-transform: uppercase;
     color: #ffffff;
     transition: 0.4s ease-in-out;
-    background: #2c61c3;
-    border-top: 4px solid #2c61c3;
-    border-bottom: 4px solid #2c61c3;
+    border-top: 4px solid rgba(0, 0, 0, 0);
+    border-bottom: 4px solid rgba(0, 0, 0, 0);
     &:hover {
       border-top: 4px solid #ffffff;
       border-bottom: 4px solid #ffffff;
@@ -51,5 +61,17 @@ export default {
     width: 32px;
     height: 32px;
   }
+}
+
+.btn-sign-up {
+  height: 32px;
+  background-color: green;
+  &:hover {
+    background-color: yellowgreen;
+  }
+}
+.btn-sign-in {
+  height: 32px;
+  background-color: yellowgreen;
 }
 </style>

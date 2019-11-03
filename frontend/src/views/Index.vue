@@ -19,8 +19,14 @@
           </div>
         </div>
       </div>
+      <div class="row mt-4 justify-content-center">
+        <a href="#" class="btn btn-primary">
+          Try now!
+        </a>
+      </div>
     </div>
   </div>
+
   <p>
     Пока что приложение находится в стадии разработки, но планируется реализовать следующий
     функционал:
@@ -50,10 +56,10 @@ export default {
   color: #ffffff;
 
   @at-root #{&}__content {
-    margin-top: 64px;
+    margin-top: 128px;
     padding: 32px;
     border-radius: 5%;
-    background-color: rgba(44, 97, 195, 0.5);
+    background-color: rgba(0, 78, 195, 0.68);
   }
 
   @at-root #{&}__title {
