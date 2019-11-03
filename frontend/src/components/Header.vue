@@ -17,11 +17,11 @@
       </li>
     </ul>
     <div class="col-xs-3 btn-group">
-      <a href="#" class="btn btn-sign-up">
-        Sign Up
+      <a href="#" class="btn btn-search">
+        <font-awesome-icon icon="search" size="lg" />
       </a>
-      <a href="#" class="btn btn-sign-in">
-        Sign In
+      <a href="#" class="btn btn-user">
+        <font-awesome-icon icon="user" size="lg" />
       </a>
     </div>
   </div>
@@ -63,15 +63,27 @@ export default {
   }
 }
 
-.btn-sign-up {
-  height: 32px;
-  background-color: green;
+.btn-search,
+.btn-user {
+  height: 100%;
+  width: 64px;
+}
+
+.btn-search {
+  border: 2px solid #dcdcdc;
+  color: #dcdcdc;
   &:hover {
-    background-color: yellowgreen;
+    border: 2px solid #f0f0f0;
+    color: #f0f0f0;
   }
 }
-.btn-sign-in {
-  height: 32px;
-  background-color: yellowgreen;
+.btn-user {
+  border: 2px solid #02c316;
+  color: #02c316;
+  &:hover {
+    border: 2px solid #02dc16;
+    color: #02dc16;
+  }
 }
+
 </style>

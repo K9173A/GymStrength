@@ -8,13 +8,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import '@/assets/css/style.css';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faUser, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
 import App from './App.vue';
 import router from './router';
 import store from './store';
 
 
+library.add(faUser);
+library.add(faSearch);
+
 Vue.use(VueAxios, axios);
 Vue.use(BootstrapVue);
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.config.productionTip = false;
 
