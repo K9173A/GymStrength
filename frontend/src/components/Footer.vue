@@ -14,6 +14,6 @@ export default {
 
 <style scoped lang="scss">
 footer {
-  background-color: lightgray;
+  border-top: 1px solid #dcdcdc;
 }
 </style>

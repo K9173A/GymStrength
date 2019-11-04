@@ -9,7 +9,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import '@/assets/css/style.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUser, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faSearch, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import App from './App.vue';
@@ -19,6 +19,7 @@ import store from './store';
 
 library.add(faUser);
 library.add(faSearch);
+library.add(faCaretDown);
 
 Vue.use(VueAxios, axios);
 Vue.use(BootstrapVue);

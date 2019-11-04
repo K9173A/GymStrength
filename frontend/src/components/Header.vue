@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar navbar-expand-lg fixed-top shadow-sm menu">
+<nav class="navbar navbar-expand-lg shadow-sm menu">
   <div class="container">
     <router-link :to="{ name: 'index' }" class="col-xs-3 navbar-brand">
       <img src="@/assets/img/logo.png" class="menu__logo" alt="logo">
@@ -15,14 +15,24 @@
           Training plan
         </router-link>
       </li>
+      <li class="nav-item">
+        <div class="dropdown">
+          <button type="button" @click="isVisible = !isVisible">
+            Calculators<font-awesome-icon icon="caret-down" size="lg" />
+          </button>
+          <div :class="{'invisible': !isVisible}">
+            <h3 style="color: red">HELLO WORLD</h3>
+          </div>
+        </div>
+      </li>
     </ul>
     <div class="col-xs-3 btn-group">
       <a href="#" class="btn btn-search">
         <font-awesome-icon icon="search" size="lg" />
       </a>
-      <a href="#" class="btn btn-user">
+      <router-link :to="{ name: 'registration' }" class="btn btn-user">
         <font-awesome-icon icon="user" size="lg" />
-      </a>
+      </router-link>
     </div>
   </div>
 </nav>
@@ -31,6 +41,12 @@
 <script>
 export default {
   name: 'Header',
+
+  data() {
+    return {
+      isVisible: false,
+    };
+  },
 };
 </script>
 
@@ -38,24 +54,21 @@ export default {
 .menu {
   padding-top: 16px;
   padding-bottom: 16px;
-  background-color: rgba(0, 78, 195, 0.68);
+  background: linear-gradient(#003366, #00499b);
 
   @at-root #{&}__item {
     min-width: 64px;
-    font-size: 1.25rem;
-    font-weight: 800;
+    font-size: 1.2rem;
+    font-weight: 700;
     text-transform: uppercase;
     color: #ffffff;
     transition: 0.4s ease-in-out;
-    border-top: 4px solid rgba(0, 0, 0, 0);
-    border-bottom: 4px solid rgba(0, 0, 0, 0);
+    border-top: 2px solid rgba(0, 0, 0, 0);
+    border-bottom: 2px solid rgba(0, 0, 0, 0);
     &:hover {
-      border-top: 4px solid #ffffff;
-      border-bottom: 4px solid #ffffff;
+      border-top: 2px solid #ffffff;
+      border-bottom: 2px solid #ffffff;
     }
-  }
-  @at-root #{&}__item--active {
-    color: green;
   }
   @at-root #{&}__logo {
     width: 32px;
@@ -63,25 +76,35 @@ export default {
   }
 }
 
+.btn {
+  border-radius: 0.5em;
+}
+
 .btn-search,
 .btn-user {
   height: 100%;
   width: 64px;
   border: none;
-  box-shadow: inset 0 0 3px #000000;
 }
 
 .btn-search {
-  background-color: #dcdcdc;
+  color: #0076eb;
+  background-color: #cdcdcd;
   &:hover {
-    background-color: #f0f0f0;
+    background-color: #ebebeb;
   }
 }
 .btn-user {
-  background-color: #02c316;
+  color: #ffffff;
+  background-color: #0069d2;
   &:hover {
-    background-color: #02dc16;
+    background-color: #0076eb;
   }
+}
+
+.invisible {
+  display: none;
+  opacity: 0;
 }
 
 </style>
