@@ -19,6 +19,11 @@ const router = new Router({
       component: () => import('./views/Index.vue'),
     },
     {
+      path: '/calculators',
+      name: 'calculators',
+      component: () => import('./views/Calculator.vue'),
+    },
+    {
       path: '/register',
       name: 'registration',
       component: () => import('./views/Registration.vue'),

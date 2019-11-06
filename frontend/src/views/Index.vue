@@ -26,10 +26,6 @@
       </div>
     </div>
   </div>
-  <p>
-    Пока что приложение находится в стадии разработки, но планируется реализовать следующий
-    функционал:
-  </p>
 </div>
 </template>
 
@@ -72,5 +68,10 @@ export default {
     font-size: 1.5rem;
     text-align: justify;
   }
+}
+
+.accordion button {
+  width: 100%;
+  display: block;
 }
 </style>

@@ -4,6 +4,7 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 import BootstrapVue from 'bootstrap-vue';
 
+import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import '@/assets/css/style.css';

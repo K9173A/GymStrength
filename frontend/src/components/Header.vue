@@ -16,13 +16,13 @@
         </router-link>
       </li>
       <li class="nav-item">
-        <div class="dropdown">
-          <button type="button" @click="isVisible = !isVisible">
-            Calculators<font-awesome-icon icon="caret-down" size="lg" />
-          </button>
-          <div :class="{'invisible': !isVisible}">
-            <h3 style="color: red">HELLO WORLD</h3>
-          </div>
+        <a href="#" class="nav-link nav-button menu__item" @click="isVisible = !isVisible">
+          Calculators <font-awesome-icon icon="caret-down" size="sm" />
+        </a>
+        <div :class="{'invisible': !isVisible}">
+          <router-link :to="{ name: 'calculators' }" class="nav-link menu__item">
+            Wilks
+          </router-link>
         </div>
       </li>
     </ul>
