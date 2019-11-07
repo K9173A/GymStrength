@@ -1,14 +1,14 @@
 <template>
 <div class="calculator">
-  <div class="d-flex calculator__header" role="tab" id="headingOne1">
-    <a href="#collapseOne1" class="nav-link h4" data-toggle="collapse"
-       data-parent="#accordionEx" aria-expanded="true" aria-controls="collapseOne1">
+  <div class="d-flex calculator__header" role="tab" id="wilksHeading">
+    <a href="#wilksCollapse" class="nav-link h4" data-toggle="collapse"
+       data-parent="#calcAccardion" aria-expanded="true" aria-controls="wilksCollapse">
       <font-awesome-icon icon="caret-down" size="lg" /> Wilks Coefficient
     </a>
   </div>
   <hr class="calculator__hr">
-  <div id="collapseOne1" class="calculator__body collapse show" role="tabpanel"
-       aria-labelledby="headingOne1" data-parent="#accordionEx">
+  <div id="wilksCollapse" class="calculator__body collapse show" role="tabpanel"
+       aria-labelledby="wilksHeading" data-parent="#calcAccardion">
     <form class="form-horizontal" role="form">
       <div class="form-body">
         <div class="form-group row">
@@ -61,7 +61,7 @@ export default {
   data() {
     return {
       bodyWeight: 80,
-      liftedWeight: 160,
+      liftedWeight: 100,
       gender: 'Male',
       coefficient: 0,
     };
