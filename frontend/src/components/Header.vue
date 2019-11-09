@@ -16,14 +16,7 @@
         </router-link>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link nav-button menu__item" @click="isVisible = !isVisible">
-          Calculators <font-awesome-icon icon="caret-down" size="sm" />
-        </a>
-        <div :class="{'invisible': !isVisible}">
-          <router-link :to="{ name: 'calculators' }" class="nav-link menu__item">
-            Wilks
-          </router-link>
-        </div>
+        <DropdownMenu/>
       </li>
     </ul>
     <div class="col-xs-3 btn-group">
@@ -39,8 +32,12 @@
 </template>
 
 <script>
+import DropdownMenu from '@/components/DropdownMenu.vue';
+
 export default {
   name: 'Header',
+
+  components: { DropdownMenu },
 
   data() {
     return {
@@ -101,10 +98,4 @@ export default {
     background-color: #0076eb;
   }
 }
-
-.invisible {
-  display: none;
-  opacity: 0;
-}
-
 </style>

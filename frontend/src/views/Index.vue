@@ -51,7 +51,7 @@ export default {
   color: #ffffff;
 
   @at-root #{&}__content {
-    margin-top: 128px;
+    margin-top: 96px;
     padding: 32px;
     border-radius: 5%;
     background-color: rgba(0, 78, 195, 0.68);
@@ -68,10 +68,5 @@ export default {
     font-size: 1.5rem;
     text-align: justify;
   }
-}
-
-.accordion button {
-  width: 100%;
-  display: block;
 }
 </style>

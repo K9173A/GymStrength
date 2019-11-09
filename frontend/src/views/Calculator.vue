@@ -2,8 +2,8 @@
 <div class="d-flex justify-content-center my-4">
   <div class="accordion md-accordion" id="calcAccardion" role="tablist"
        aria-multiselectable="true">
-    <Wilks/>
-    <OneRepMax/>
+    <Wilks :show="chosenItem === 'Wilks'"/>
+    <OneRepMax :show="chosenItem === 'OneRepMax'"/>
   </div>
 </div>
 </template>
@@ -14,6 +14,8 @@ import OneRepMax from '@/components/calculators/OneRepMax.vue';
 
 export default {
   name: 'Calculator',
+
+  props: ['chosenItem'],
 
   components: {
     Wilks,

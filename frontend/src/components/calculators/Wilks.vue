@@ -7,7 +7,8 @@
     </a>
   </div>
   <hr class="calculator__hr">
-  <div id="wilksCollapse" class="calculator__body collapse show" role="tabpanel"
+  <div id="wilksCollapse" class="calculator__body collapse"
+       :class="{'show': show}" role="tabpanel"
        aria-labelledby="wilksHeading" data-parent="#calcAccardion">
     <form class="form-horizontal" role="form">
       <div class="form-body">
@@ -57,6 +58,8 @@
 <script>
 export default {
   name: 'Wilks',
+
+  props: ['show'],
 
   data() {
     return {

@@ -7,7 +7,8 @@
     </a>
   </div>
   <hr class="calculator__hr">
-  <div id="ormCollapse" class="calculator__body collapse" role="tabpanel"
+  <div id="ormCollapse" class="calculator__body collapse"
+       :class="{'show': showCalc }" role="tabpanel"
        aria-labelledby="ormHeading" data-parent="#calcAccardion">
     <form class="form-horizontal" role="form">
       <div class="form-body">
@@ -47,8 +48,12 @@
 export default {
   name: 'OneRepMax',
 
+  props: ['show'],
+
   data() {
+    console.log('OneRepMax', this.show);
     return {
+      showCalc: this.show,
       reps: 5,
       liftedWeight: 100,
       results: [

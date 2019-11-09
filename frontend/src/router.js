@@ -21,12 +21,17 @@ const router = new Router({
     {
       path: '/calculators',
       name: 'calculators',
+      props: true,
       component: () => import('./views/Calculator.vue'),
     },
     {
       path: '/register',
       name: 'registration',
       component: () => import('./views/Registration.vue'),
+    },
+    {
+      path: '*',
+      redirect: '/',
     },
   /*
     {
