@@ -4,6 +4,7 @@
        aria-multiselectable="true">
     <Wilks :show="chosenItem === 'Wilks'"/>
     <OneRepMax :show="chosenItem === 'OneRepMax'"/>
+    <BMR :show="chosenItem === 'BMR'"/>
   </div>
 </div>
 </template>
@@ -11,6 +12,7 @@
 <script>
 import Wilks from '@/components/calculators/Wilks.vue';
 import OneRepMax from '@/components/calculators/OneRepMax.vue';
+import BMR from '@/components/calculators/BMR.vue';
 
 export default {
   name: 'Calculator',
@@ -20,6 +22,7 @@ export default {
   components: {
     Wilks,
     OneRepMax,
+    BMR,
   },
 };
 </script>

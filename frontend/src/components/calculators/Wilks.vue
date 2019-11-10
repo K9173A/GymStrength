@@ -6,10 +6,8 @@
       <font-awesome-icon icon="caret-down" size="lg" /> Wilks Coefficient
     </a>
   </div>
-  <hr class="calculator__hr">
-  <div id="wilksCollapse" class="calculator__body collapse"
-       :class="{'show': show}" role="tabpanel"
-       aria-labelledby="wilksHeading" data-parent="#calcAccardion">
+  <div id="wilksCollapse" class="calculator__body collapse" :class="{'show': show}"
+       role="tabpanel" aria-labelledby="wilksHeading" data-parent="#calcAccardion">
     <form class="form-horizontal" role="form">
       <div class="form-body">
         <div class="form-group row">

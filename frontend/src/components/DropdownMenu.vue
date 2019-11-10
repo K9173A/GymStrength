@@ -8,7 +8,6 @@
       {{ item }}
     </a>
   </div>
-
 </div>
 </template>
 
@@ -21,6 +20,7 @@ export default {
       items: [
         'Wilks',
         'OneRepMax',
+        'BMR',
       ],
     };
   },
@@ -39,8 +39,11 @@ export default {
           case 'OneRepMax':
             document.getElementById('ormCollapse').classList.add('show');
             break;
+          case 'BMR':
+            document.getElementById('bmrCollapse').classList.add('show');
+            break;
           default:
-            throw Error('Invalid item value!');
+            throw new Error('Invalid item value!');
         }
       } else {
         this.$router.push({ name: 'calculators', params: { chosenItem: item } });

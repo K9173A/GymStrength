@@ -24,22 +24,17 @@ body {
 
 .calculator {
   min-width: 40rem;
-  border: 2px solid #afafaf;
+  border: 1px solid #afafaf;
 
   @at-root #{&}__header {
     font-size: 1.1rem;
   }
 
-  @at-root #{&}__hr {
-    background-color: #afafaf;
-    border-top: 2px solid #afafaf;
-    margin: 0;
-  }
-
   @at-root #{&}__body {
-    margin: 16px 16px 0 16px;
+    padding: 16px 16px 0 16px;
     font-size: 1.05rem;
     font-weight: bold;
+    border-top: 1px solid #afafaf;
   }
 
   label {
