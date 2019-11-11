@@ -15,8 +15,8 @@ const router = new Router({
     {
       path: '/gym',
       name: 'plan',
-      meta: { requiresAuth: true },
-      component: () => import('./views/Index.vue'),
+      // meta: { requiresAuth: true },
+      component: () => import('./views/Plan.vue'),
     },
     {
       path: '/calculators',
