@@ -19,7 +19,7 @@
       <div class="tab-content m-2">
         <div class="tab-pane fade show active" role="tabpanel"
              id="nav-routines" aria-labelledby="nav-routines-tab">
-          Routines tables
+          <Workout/>
         </div>
         <div class="tab-pane fade" role="tabpanel"
              id="nav-metrics" aria-labelledby="nav-metrics-tab">
@@ -36,8 +36,12 @@
 </template>
 
 <script>
+import Workout from '@/components/Workout.vue';
+
 export default {
   name: 'Plan',
+
+  components: { Workout },
 };
 </script>
 
