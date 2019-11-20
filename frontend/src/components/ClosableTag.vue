@@ -56,7 +56,7 @@ export default {
 <style scoped lang="scss">
 .closable-tag {
   display: inline-block;
-  margin-bottom: 4px;
+  margin: 4px;
   padding: 4px 8px 4px 8px;
   border-radius: 4px;
   background-color: rgba(0, 180, 255, 0.28);
