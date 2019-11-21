@@ -9,55 +9,80 @@
         <th scope="col">#</th>
         <th scope="col">Exercise</th>
         <th scope="col">Sets</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody class="gs-table__body">
-      <tr>
-        <td>1</td>
-        <td>2</td>
+      <tr v-for="(exercise, index) in exercises" :key="exercise.name">
+        <td>{{ index + 1 }}</td>
+        <td>{{ exercise.name }}</td>
         <td>
-          <ClosableTag/>
-          <ClosableTag/>
-          <ClosableTag/>
+          <ClosableTag v-for="(set, index) in exercise.sets" :key="index" :data="set"/>
         </td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>2</td>
-        <td>3</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>2</td>
-        <td>3</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>2</td>
-        <td>3</td>
+        <td>
+          <button type="button" class="btn gs-del-btn">
+            <font-awesome-icon icon="times" size="lg"/>
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
-  <button type="button" class="btn gs-table__btn">
-    <font-awesome-icon icon="plus" size="lg" />
+  <button type="button" class="btn gs-add-btn" @click="addExercise">
+    <font-awesome-icon icon="plus" size="lg"/>
   </button>
 </div>
 </template>
 
 <script>
-import ClosableTag from '@/components/ClosableTag.vue';
+import ClosableTag from '@/components/WorkoutSet.vue';
 
 export default {
   name: 'Workout',
 
   components: { ClosableTag },
+
+  data() {
+    return {
+      exercises: [
+        {
+          name: 'MyExercise',
+          sets: [
+            {
+              weight: 20,
+              weightSystem: 'Metric',
+              repetitions: 10,
+            },
+            {
+              weight: 20,
+              weightSystem: 'Metric',
+              repetitions: 10,
+            },
+            {
+              weight: 20,
+              weightSystem: 'Metric',
+              repetitions: 10,
+            },
+          ],
+        },
+      ],
+    };
+  },
+
+  methods: {
+    addExercise() {
+      console.log('add row');
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
+.table {
+  margin-bottom: 0;
+}
+
 .gs-table {
   width: 100%;
-  margin-bottom: 0;
   box-shadow: 0 0 5px rgba(40, 40, 40, 0.25);
 
   @at-root #{&}__title {
@@ -75,23 +100,32 @@ export default {
   @at-root #{&}__body {
     font-size: 1.1rem;
   }
+}
 
-  @at-root #{&}__btn {
-    width: 100%;
-    background-color: #f6f6f6;
-    color: #02c316;
-    border-radius: 0;
+.gs-add-btn {
+  width: 100%;
+  background-color: #f6f6f6;
+  color: #02c316;
+  border-radius: 0;
+  border-top: 2px solid #f0f0f0;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  &:focus {
+    background-color: #e1e1e1;
     border-top: 2px solid #f0f0f0;
+    box-shadow: none;
+  }
+}
 
-    &:hover {
-      background-color: #f0f0f0;
-    }
+.gs-del-btn {
+  width: 100%;
+  color: #f20005;
 
-    &:focus {
-      background-color: #e1e1e1;
-      border-top: 2px solid #f0f0f0;
-      box-shadow: none;
-    }
+  &:focus {
+    outline: none;
   }
 }
 </style>
