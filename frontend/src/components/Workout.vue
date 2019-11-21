@@ -1,45 +1,33 @@
 <template>
-<div class="gs-table">
-  <div class="gs-table__title">
+<div class="gs-workout">
+  <div class="gs-workout__title">
     Workout
   </div>
-  <table class="table table-bordered table-striped">
-    <thead class="gs-table__head">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Exercise</th>
-        <th scope="col">Sets</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody class="gs-table__body">
-      <tr v-for="(exercise, index) in exercises" :key="exercise.name">
-        <td>{{ index + 1 }}</td>
-        <td>{{ exercise.name }}</td>
-        <td>
-          <ClosableTag v-for="(set, index) in exercise.sets" :key="index" :data="set"/>
-        </td>
-        <td>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col">
+        <div v-for="(exercise, index) in exercises" :key="exercise.name">
+          <Exercise :exercise="exercise" :index="index"/>
           <button type="button" class="btn gs-del-btn">
             <font-awesome-icon icon="times" size="lg"/>
           </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <button type="button" class="btn gs-add-btn" @click="addExercise">
-    <font-awesome-icon icon="plus" size="lg"/>
-  </button>
+        </div>
+        <button type="button" class="btn gs-add-btn" @click="addExercise">
+          <font-awesome-icon icon="plus" size="lg"/>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 </template>
 
 <script>
-import ClosableTag from '@/components/WorkoutSet.vue';
+import Exercise from '@/components/Exercise.vue';
 
 export default {
   name: 'Workout',
 
-  components: { ClosableTag },
+  components: { Exercise },
 
   data() {
     return {
@@ -77,11 +65,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.table {
-  margin-bottom: 0;
-}
-
-.gs-table {
+.gs-workout {
   width: 100%;
   box-shadow: 0 0 5px rgba(40, 40, 40, 0.25);
 
@@ -91,14 +75,6 @@ export default {
     font-size: 1.5rem;
     font-weight: bold;
     text-transform: uppercase;
-  }
-
-  @at-root #{&}__head {
-    font-size: 1.2rem;
-  }
-
-  @at-root #{&}__body {
-    font-size: 1.1rem;
   }
 }
 
