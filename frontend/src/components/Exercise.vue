@@ -1,26 +1,24 @@
 <template>
 <div class="gs-exercise">
-  <div class="row no-gutters">
-    <img src="https://place-hold.it/256x256">
-    <div class="col">
-      <div class="gs-exercise-header">
-        <div class="gs-exercise-header__number">
+  <img src="https://via.placeholder.com/256" alt="exercise">
+    <div class="gs-exercise-content">
+      <div class="gs-exercise-header row">
+        <div class="col-1 gs-exercise-header__number">
           #{{ index + 1 }}
         </div>
-        <div class="gs-exercise-header__name">
-          {{ exercise.name }}
+        <div class="col-10 gs-exercise-header__name">
+            {{ exercise.name }}
         </div>
-      </div>
-      <div class="card-body">
-        <WorkoutSetBox :sets="exercise.sets"/>
-        <div class="col">
+        <div class="col-1 gs-exercise-header__close">
           <button type="button" class="btn gs-del-btn">
             <font-awesome-icon icon="times" size="lg"/>
           </button>
         </div>
       </div>
+      <div class="gs-exercise-body">
+        <WorkoutSetBox :sets="exercise.sets"/>
+      </div>
     </div>
-  </div>
 </div>
 </template>
 
@@ -37,28 +35,47 @@ export default {
 </script>
 
 <style scoped lang="scss">
+img {
+  float: left;
+}
+
 .gs-exercise {
   overflow: hidden;
   border-radius: 8px;
-  background-color: #2aabd2;
+  background-color: #dddddd;
   box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
 .gs-exercise-header {
-  -webkit-box-flex: 1;
-  flex: 1 1 auto;
   font-size: 1.2rem;
   font-weight: 800;
   color: white;
 
   @at-root #{&}__number {
-    padding: 8px;
+    display: flex;
+    align-items: center;
     background-color: #f20005;
+    text-align: center;
   }
 
   @at-root #{&}__name {
-    padding: 8px;
+    display: flex;
+    align-items: center;
     background-color: #606060;
+  }
+
+  @at-root #{&}__close {
+    display: flex;
+    align-items: center;
+    background-color: #606060;
+  }
+}
+
+.gs-del-btn {
+  color: #f20005;
+
+  &:focus {
+    outline: none;
   }
 }
 </style>
