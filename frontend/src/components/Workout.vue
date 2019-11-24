@@ -6,7 +6,7 @@
   <div class="container mt-4">
     <div class="row">
       <div class="col">
-        <Exercise class="my-2" v-for="(exercise, index) in exercises"
+        <Exercise class="my-2" @clicked="deleted" v-for="(exercise, index) in exercises"
                   :key="exercise.name" :exercise="exercise" :index="index"/>
         <button type="button" class="my-2 btn gs-add-btn" @click="addExercise">
           Add Exercise
@@ -55,6 +55,9 @@ export default {
   methods: {
     addExercise() {
       console.log('add row');
+    },
+    deleted(value) {
+      console.log('Hello Wodl', value);
     },
   },
 };

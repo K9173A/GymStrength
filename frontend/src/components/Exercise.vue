@@ -8,7 +8,7 @@
       {{ exercise.name }}
     </div>
     <div class="col-1 gs-exercise-header__close">
-      <button type="button" class="btn gs-del-btn">
+      <button type="button" class="btn gs-del-btn" @click="$emit('clicked', 42)">
         <font-awesome-icon icon="times" size="lg"/>
       </button>
     </div>
@@ -69,6 +69,10 @@ export default {
       console.log('remove item...');
     },
 
+    deleteExercise() {
+      console.log('delete exercise');
+    },
+
     calculateTotal() {
 
     },
@@ -118,7 +122,7 @@ $header-color: #a7a7a7;
 
 .gs-exercise-options {
   background-color: $header-color;
-  color: red;
+  color: #ffffff;
   font-size: 1.2rem;
   font-weight: 800;
 }
