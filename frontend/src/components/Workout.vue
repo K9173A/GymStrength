@@ -63,14 +63,18 @@ export default {
 <style scoped lang="scss">
 .gs-workout {
   width: 100%;
+  overflow: hidden;
   box-shadow: 0 0 5px rgba(40, 40, 40, 0.25);
+  border-radius: 16px;
+  border: 1px solid #b3b3b3;
 
   @at-root #{&}__title {
     padding: 1em;
-    background: linear-gradient(#1c92d2, #00a5ff);
+    background: linear-gradient(#003366, #00499b);
     font-size: 1.5rem;
     font-weight: bold;
     text-transform: uppercase;
+    color: #ffffff;
   }
 }
 

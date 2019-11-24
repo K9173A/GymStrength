@@ -2,12 +2,12 @@
 <div class="gs-workout-set">
   <div class="d-flex">
     <div class="gs-workout-input-group">
-      <span id="idWeight">W</span>
+      <span id="idWeight">Weight:</span>
       <input type="text" maxlength="4" aria-describedby="idWeight"
              :value="data.weight">
     </div>
     <div class="gs-workout-input-group">
-      <span id="idReps">R</span>
+      <span id="idReps">Repetitions:</span>
       <input type="text" maxlength="4" aria-describedby="idReps"
              :value="data.repetitions">
     </div>
@@ -37,6 +37,7 @@ $color-text: #1c92d2;
 
 .gs-workout-input-group {
   display: flex;
+  margin-right: 16px;
 
   span {
     padding: 0 4px 0 4px;
@@ -44,7 +45,7 @@ $color-text: #1c92d2;
     align-items: center;
     color: $color-text;
     font-weight: 800;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 
   input {
@@ -56,7 +57,7 @@ $color-text: #1c92d2;
     transition: 0.3s;
     color: $color-text;
     font-weight: 800;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     text-align: center;
     &:focus {
       outline: none;
