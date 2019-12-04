@@ -10,7 +10,8 @@
     <div class="gs-workout-input-group">
       <span id="idReps">Repetitions:</span>
       <input type="text" maxlength="4" aria-describedby="idReps"
-             :value="getExerciseSet(exerciseId, setId).repetitions">
+             :value="getExerciseSet(exerciseId, setId).repetitions"
+             @input="setRepetitions">
     </div>
   </div>
 </div>
@@ -36,6 +37,14 @@ export default {
         exerciseId: this.exerciseId,
         setId: this.setId,
         weight: parseInt(event.target.value, 10),
+      });
+    },
+
+    setRepetitions(event) {
+      this.setWorkoutSetReps({
+        exerciseId: this.exerciseId,
+        setId: this.setId,
+        repetitions: parseInt(event.target.value, 10),
       });
     },
   },

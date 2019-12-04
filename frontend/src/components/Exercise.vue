@@ -30,8 +30,13 @@
         </button>
       </div>
     </div>
-    <div class="gs-workout-set-total d-flex align-items-center">
-      Total weight: {{ totalWeight }}; Total reps: {{ totalReps }}
+    <div class="gs-workout-set-total d-flex align-items-center justify-content-around">
+      <div class="badge badge-primary">
+        Total reps: {{ getExerciseTotalReps(exerciseId) }}
+      </div>
+      <div class="badge badge-primary">
+        Total weight: {{ getExerciseTotalWeight(exerciseId) }}
+      </div>
     </div>
   </div>
 </div>
@@ -55,18 +60,6 @@ export default {
       'getExerciseTotalWeight',
       'getExerciseTotalReps',
     ]),
-  },
-
-  data() {
-    return {
-      totalWeight: 0,
-      totalReps: 0,
-    };
-  },
-
-  mounted() {
-    this.totalReps = this.getExerciseTotalReps(this.exerciseId);
-    this.totalWeight = this.getExerciseTotalWeight(this.exerciseId);
   },
 };
 </script>
@@ -136,9 +129,7 @@ img {
   padding: 4px 8px 4px 8px;
   border-top: 1px solid #b3b3b3;
   color: #6c757d;
-  font-size: 0.9rem;
-  font-weight: 800;
-  text-shadow: 0 -1px 0 #ffffff;
+  font-size: 1.2rem;
   text-transform: uppercase;
 }
 
