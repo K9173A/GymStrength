@@ -2,35 +2,26 @@
 <div class="gs-workout">
   <div class="gs-workout-header d-flex align-items-center">
     <a href="#" class="gs-workout-calendar">
-      <div class="gs-workout-month">
-        Nov
-      </div>
-      <div class="gs-workout-day">
-        30
-      </div>
-      <div class="gs-workout-weekday">
-        Sat
-      </div>
+      <div class="gs-workout-month">Nov</div>
+      <div class="gs-workout-day">30</div>
+      <div class="gs-workout-weekday">Sat</div>
     </a>
     <span class="gs-workout-title">
       Workout
     </span>
   </div>
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <Exercise class="my-3" @clicked="deleted" v-for="(exercise, index) in exercises"
-                  :key="exercise.name" :exercise="exercise" :index="index"/>
-        <button type="button" class="my-2 btn gs-add-btn" @click="addExercise">
-          Add Exercise
-        </button>
-      </div>
-    </div>
+  <div class="d-flex flex-column">
+    <Exercise v-for="(id, index) in getExercisesIds" :key="id"
+              :exerciseId="id" :exerciseIndex="index" class="my-3 mx-auto"/>
+    <button type="button" class="m-2 btn gs-add-btn">
+      Add Exercise
+    </button>
   </div>
 </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Exercise from '@/components/Exercise.vue';
 
 export default {
@@ -38,40 +29,8 @@ export default {
 
   components: { Exercise },
 
-  data() {
-    return {
-      exercises: [
-        {
-          name: 'MyExercise',
-          sets: [
-            {
-              weight: 20,
-              weightSystem: 'Metric',
-              repetitions: 10,
-            },
-            {
-              weight: 20,
-              weightSystem: 'Metric',
-              repetitions: 10,
-            },
-            {
-              weight: 20,
-              weightSystem: 'Metric',
-              repetitions: 10,
-            },
-          ],
-        },
-      ],
-    };
-  },
-
-  methods: {
-    addExercise() {
-      console.log('add row');
-    },
-    deleted(value) {
-      console.log('Hello Wodl', value);
-    },
+  computed: {
+    ...mapGetters(['getExercisesIds']),
   },
 };
 </script>
@@ -118,7 +77,7 @@ export default {
   background: #a7a7a7;
   border-radius: 4px 4px 0 0;
   color: #ffffff;
-  font-size: 0.8em;
+  font-size: 0.8rem;
   text-transform: uppercase;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
@@ -132,7 +91,6 @@ export default {
 }
 
 .gs-add-btn {
-  width: 100%;
   border-radius: 12px;
   border: 3px dashed #02a515;
   color: #02a515;

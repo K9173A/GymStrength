@@ -1,54 +1,44 @@
 <template>
 <div class="gs-exercise">
-  <div class="gs-exercise-header row">
+  <div class="gs-exercise-header d-flex">
     <div class="col-1 gs-exercise-header__number">
-      #{{ index + 1 }}
+      #{{ exerciseIndex + 1}}
     </div>
-    <div class="col-10 gs-exercise-header__name">
-      {{ exercise.name }}
+    <div class="col-9 gs-exercise-header__name">
+      {{ getExerciseName(exerciseId) }}
+    </div>
+    <div class="col-1 gs-exercise-header__system">
+      <select class="form-control form-control-sm">
+        <option value="kg" selected>KG</option>
+        <option value="lb">LB</option>
+      </select>
     </div>
     <div class="col-1 gs-exercise-header__close">
-      <button type="button" class="btn gs-del-btn" @click="$emit('clicked', 42)">
+      <button type="button" class="btn gs-del-btn">
         <font-awesome-icon icon="times" size="lg"/>
       </button>
     </div>
   </div>
-  <div class="row">
-    <div class="gs-exercise-options col-4">
-      <img src="https://via.placeholder.com/256" alt="exercise">
-      <div class="container m-2">
-        <div class="row">
-          <span>System: </span>
-          <select class="form-control form-control-sm">
-            <option value="kg" selected>KG</option>
-            <option value="lb">LB</option>
-          </select>
-        </div>
-        <div class="row">
-          <span>Total: {{ total }}</span>
-        </div>
+  <img src="https://via.placeholder.com/256" alt="exercise">
+  <div class="gs-exercise-body">
+    <div class="gs-workout-set-list">
+      <div v-for="(id, index) in getExerciseSetsIds(exerciseId)" :key="id"
+           class="gs-workout-set-wrapper">
+        <WorkoutSet :setId="id" :setIndex="index" :exerciseId="exerciseId"/>
+        <button class="gs-close-btn">
+          <font-awesome-icon icon="times" size="lg"/>
+        </button>
       </div>
     </div>
-    <div class="gs-exercise-body col">
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <div v-for="(set, index) in exercise.sets" :key="index"
-                 class="gs-workout-set-wrapper">
-              <WorkoutSet :data="set"/>
-              <button @click="remove" class="gs-close-btn">
-                <font-awesome-icon icon="times" size="lg"/>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="gs-workout-set-total d-flex align-items-center">
+      Total weight: {{ totalWeight }}; Total reps: {{ totalReps }}
     </div>
   </div>
 </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import WorkoutSet from '@/components/WorkoutSet.vue';
 
 export default {
@@ -56,72 +46,103 @@ export default {
 
   components: { WorkoutSet },
 
-  props: ['index', 'exercise'],
+  props: ['exerciseId', 'exerciseIndex'],
+
+  computed: {
+    ...mapGetters([
+      'getExerciseName',
+      'getExerciseSetsIds',
+      'getExerciseTotalWeight',
+      'getExerciseTotalReps',
+    ]),
+  },
 
   data() {
     return {
-      total: 0,
+      totalWeight: 0,
+      totalReps: 0,
     };
   },
 
-  methods: {
-    remove() {
-      console.log('remove item...');
-    },
-
-    deleteExercise() {
-      console.log('delete exercise');
-    },
-
-    calculateTotal() {
-
-    },
+  mounted() {
+    this.totalReps = this.getExerciseTotalReps(this.exerciseId);
+    this.totalWeight = this.getExerciseTotalWeight(this.exerciseId);
   },
 };
 </script>
 
 <style scoped lang="scss">
-$header-color: #a7a7a7;
+$header-color: #0069d2;
+
+img {
+  float: left;
+}
 
 .form-control {
   width: unset;
 }
 
 .gs-exercise {
+  max-height: 290px;
+  display: inline-block;
   overflow: hidden;
   border-radius: 8px;
-  background-color: #dddddd;
+  background-color: #e8ebee;
   box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
 .gs-exercise-header {
   font-size: 1.5rem;
   font-weight: 800;
-  color: white;
+  color: #ffffff;
+  background-color: $header-color;
 
   @at-root #{&}__number {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0007f2;
     padding-right: 0;
   }
 
   @at-root #{&}__name {
     display: flex;
     align-items: center;
-    background-color: $header-color;
+  }
+
+  @at-root #{&}__system {
+    display: flex;
+    align-items: center;
   }
 
   @at-root #{&}__close {
     display: flex;
     align-items: center;
-    background-color: $header-color;
   }
 }
 
+.gs-exercise-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.gs-workout-set-list {
+  display: inline-block;
+  height: 224px;
+  overflow-y: scroll;
+}
+
+.gs-workout-set-total {
+  height: 32px;
+  padding: 4px 8px 4px 8px;
+  border-top: 1px solid #b3b3b3;
+  color: #6c757d;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-shadow: 0 -1px 0 #ffffff;
+  text-transform: uppercase;
+}
+
 .gs-exercise-options {
-  background-color: $header-color;
   color: #ffffff;
   font-size: 1.2rem;
   font-weight: 800;
@@ -145,10 +166,11 @@ $header-color: #a7a7a7;
 
 .gs-close-btn {
   padding: 4px;
-  background-color: #ffffff;
-  border: none;
+  border: 1px solid lightgray;
+  border-left: none;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
+  background: linear-gradient(#ffffff, #e7e7e7);
   color: #b30005;
   box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.5);
   transition: 0.3s;
