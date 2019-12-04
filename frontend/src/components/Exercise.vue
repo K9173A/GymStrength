@@ -8,9 +8,10 @@
       {{ getExerciseName(exerciseId) }}
     </div>
     <div class="col-1 gs-exercise-header__system">
-      <select class="form-control form-control-sm">
-        <option value="kg" selected>KG</option>
-        <option value="lb">LB</option>
+      <select class="form-control form-control-sm"
+              @change="onChangeUnits($event.target.value)">
+        <option value="Metric" selected>KG</option>
+        <option value="Imperial">LB</option>
       </select>
     </div>
     <div class="col-1 gs-exercise-header__close">
@@ -43,7 +44,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import WorkoutSet from '@/components/WorkoutSet.vue';
 
 export default {
@@ -60,6 +61,17 @@ export default {
       'getExerciseTotalWeight',
       'getExerciseTotalReps',
     ]),
+  },
+
+  methods: {
+    ...mapMutations(['setExerciseWeightSystem']),
+
+    onChangeUnits(weightSystem) {
+      this.setExerciseWeightSystem({
+        exerciseId: this.exerciseId,
+        weightSystem,
+      });
+    },
   },
 };
 </script>
