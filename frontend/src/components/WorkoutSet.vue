@@ -3,15 +3,15 @@
   <div class="d-flex">
     <div class="gs-workout-input-group">
       <span id="idWeight">Weight:</span>
-      <input type="text" maxlength="4" aria-describedby="idWeight"
-             :value="getExerciseSet(exerciseId, setId).weight"
-             @input="setWeight">
+      <input type="number" pattern="[\d]{1,4}" maxlength="4"
+             aria-describedby="idWeight" @input="setWeight"
+             :value="getExerciseSet(exerciseId, setId).weight">
     </div>
     <div class="gs-workout-input-group">
       <span id="idReps">Repetitions:</span>
-      <input type="text" maxlength="4" aria-describedby="idReps"
-             :value="getExerciseSet(exerciseId, setId).repetitions"
-             @input="setRepetitions">
+      <input type="text" pattern="[\d]{1,3}" maxlength="3"
+             aria-describedby="idReps" @input="setRepetitions"
+             :value="getExerciseSet(exerciseId, setId).repetitions">
     </div>
   </div>
 </div>
@@ -33,18 +33,32 @@ export default {
     ...mapMutations(['setWorkoutSetWeight', 'setWorkoutSetReps']),
 
     setWeight(event) {
+      let newWeight = parseInt(event.target.value, 10);
+      // Upper limit is equal to 999 kgs.
+      if (newWeight < 1) {
+        newWeight = 1;
+      }
+      // Upper limit is equal to 999 kgs.
+      if (newWeight > 999) {
+        newWeight = 999;
+      }
+
       this.setWorkoutSetWeight({
         exerciseId: this.exerciseId,
         setId: this.setId,
-        weight: parseInt(event.target.value, 10),
+        weight: newWeight,
       });
     },
 
     setRepetitions(event) {
+      let newReps = parseInt(event.target.value, 10);
+      if (newReps < 1) {
+        newReps = 1;
+      }
       this.setWorkoutSetReps({
         exerciseId: this.exerciseId,
         setId: this.setId,
-        repetitions: parseInt(event.target.value, 10),
+        repetitions: newReps,
       });
     },
   },

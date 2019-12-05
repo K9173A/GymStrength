@@ -4,15 +4,8 @@
     <div class="col-1 gs-exercise-header__number">
       #{{ exerciseIndex + 1}}
     </div>
-    <div class="col-9 gs-exercise-header__name">
+    <div class="col-10 gs-exercise-header__name">
       {{ getExerciseName(exerciseId) }}
-    </div>
-    <div class="col-1 gs-exercise-header__system">
-      <select class="form-control form-control-sm"
-              @change="onChangeUnits($event.target.value)">
-        <option value="Metric" selected>KG</option>
-        <option value="Imperial">LB</option>
-      </select>
     </div>
     <div class="col-1 gs-exercise-header__close">
       <button type="button" class="btn gs-del-btn">
@@ -33,10 +26,10 @@
     </div>
     <div class="gs-workout-set-total d-flex align-items-center justify-content-around">
       <div class="badge badge-primary">
-        Total reps: {{ getExerciseTotalReps(exerciseId) }}
+        Weight | {{ getExerciseTotalWeight(exerciseId) }} kg
       </div>
       <div class="badge badge-primary">
-        Total weight: {{ getExerciseTotalWeight(exerciseId) }}
+        Repetitions | {{ getExerciseTotalReps(exerciseId) }}
       </div>
     </div>
   </div>
@@ -110,11 +103,6 @@ img {
   }
 
   @at-root #{&}__name {
-    display: flex;
-    align-items: center;
-  }
-
-  @at-root #{&}__system {
     display: flex;
     align-items: center;
   }

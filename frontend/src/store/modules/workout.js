@@ -2,7 +2,6 @@ const state = {
   exercises: {
     1: {
       name: 'Bench press',
-      weightSystem: 'Metric',
       sets: {
         1: { weight: 80, repetitions: 5 },
         2: { weight: 80, repetitions: 5 },
@@ -48,25 +47,15 @@ const mutations = {
   setWorkoutSetReps(state, { exerciseId, setId, repetitions }) {
     state.exercises[exerciseId].sets[setId].repetitions = repetitions;
   },
-  /**
-   * Sets exercise weight system (kgs or lbs).
-   * @param state - Vuex object which stores states.
-   * @param exerciseId - exercise id.
-   * @param weightSystem - weight system.
-   */
-  setExerciseWeightSystem(state, { exerciseId, weightSystem }) {
-    state.exercises[exerciseId].weightSystem = weightSystem;
-    const keys = Object.keys(state.exercises[exerciseId].sets);
-    const coefficient = weightSystem === 'Metric' ? 0.45359237 : 2.20462262185;
-    for (let i = 0; i < keys.length; i += 1) {
-      const key = keys[i];
-      const convertedWeight = state.exercises[exerciseId].sets[key].weight * coefficient;
-      state.exercises[exerciseId].sets[key].weight = convertedWeight.toFixed(0);
-    }
-  },
 };
 
 const getters = {
+  /**
+   * Gets exercise weight system by its id.
+   * @param state - Vuex object which stores states.
+   * @returns {string} exercise weight system.
+   */
+  getExerciseWeightSystem: state => exerciseId => state.exercises[exerciseId].weightSystem,
   /**
    * Gets exercise name by its id.
    * @param state - Vuex object which stores states.
