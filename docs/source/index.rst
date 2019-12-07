@@ -8,11 +8,16 @@ Welcome to GymStrength's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Basics:
+   :caption: Основы:
 
    introduction
    getting_started
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Структура:
+
+   mainapp
 
 Indices and tables
 ==================
