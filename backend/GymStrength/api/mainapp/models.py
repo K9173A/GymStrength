@@ -39,11 +39,38 @@ class ExerciseInformation(models.Model):
     )
 
 
+class Workout(models.Model):
+    """
+    Workout is a complex of exercises with set amount of sets and reps for
+    each exercise.
+    """
+    date = models.DateField()
+    name = models.CharField(
+        max_length=128,
+        blank=True
+    )
+    user = models.ForeignKey(
+        User,
+        related_name='user_set',
+        on_delete=models.CASCADE
+    )
+
+
 class WorkoutExercise(models.Model):
+    """
+    Model which stores sets which are planned for the workout.
+    """
     workout = models.ForeignKey(
         Workout,
-
+        related_name='exercise_set',
+        on_delete=models.CASCADE,
     )
+    information = models.ForeignKey(
+        ExerciseInformation,
+        related_name='information_set',
+        on_delete=models.CASCADE,
+    )
+
 
 class Set(models.Model):
     """
@@ -56,27 +83,7 @@ class Set(models.Model):
         default=1
     )
     exercise = models.ForeignKey(
-        Exercise,
+        WorkoutExercise,
         related_name='exercise_set',
-        on_delete=models.CASCADE
-    )
-
-
-class Workout(models.Model):
-    """
-    Workout is a complex of exercises with set amount of sets and reps for
-    each exercise.
-    """
-    date = models.DateField()
-    name = models.CharField(
-        max_length=128,
-        blank=True
-    )
-    sets = models.ManyToManyField(
-        Set
-    )
-    user = models.ForeignKey(
-        User,
-        related_name='user_set',
         on_delete=models.CASCADE
     )
