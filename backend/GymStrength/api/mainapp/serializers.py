@@ -3,7 +3,13 @@ Module for mainapp serializers.
 """
 from rest_framework import serializers
 
-from .models import (Muscle, Exercise, Set)
+from .models import (
+    Muscle,
+    ExerciseInformation,
+    Workout,
+    WorkoutExercise,
+    Set,
+)
 
 
 class MuscleSerializer(serializers.ModelSerializer):
@@ -14,18 +20,43 @@ class MuscleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Muscle
-        fields = (id, name,)
+        fields = (
+            'id',
+            'name',
+        )
 
 
-class ExerciseSerializer(serializers.ModelSerializer):
+class ExerciseInformationSerializer(serializers.ModelSerializer):
     """
-    Exercise model serializer.
+    ExerciseInformation model serializer.
     """
     id = serializers.ReadOnlyField()
 
     class Meta:
-        model = Exercise
-        fields = (id, name, description, image, muscle)
+        model = ExerciseInformation
+        fields = (
+            'id',
+            'name',
+            'description',
+            'image',
+            'muscle',
+        )
+
+
+class WorkoutSerializer(serializers.ModelSerializer):
+    """
+    Workout model serializer.
+    """
+    id = serializers.ReadOnlyField()
+
+    class Meta:
+        model = Workout
+        fields = (
+            'id',
+            'date',
+            'name',
+            'user',
+        )
 
 
 class SetSerializer(serializers.ModelSerializer):
@@ -36,4 +67,8 @@ class SetSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Set
-        fields = (weight, repetition)
+        fields = (
+            'weight',
+            'repetition',
+            'exercise',
+        )
