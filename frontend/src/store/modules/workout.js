@@ -51,12 +51,6 @@ const mutations = {
 
 const getters = {
   /**
-   * Gets exercise weight system by its id.
-   * @param state - Vuex object which stores states.
-   * @returns {string} exercise weight system.
-   */
-  getExerciseWeightSystem: state => exerciseId => state.exercises[exerciseId].weightSystem,
-  /**
    * Gets exercise name by its id.
    * @param state - Vuex object which stores states.
    * @returns {string} exercise name.

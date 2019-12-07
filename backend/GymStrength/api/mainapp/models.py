@@ -12,9 +12,6 @@ class Muscle(models.Model):
     english_name = models.CharField(
         max_length=128
     )
-    latin_name = models.CharField(
-        max_length=128
-    )
 
 
 class Exercise(models.Model):
@@ -40,20 +37,6 @@ class Exercise(models.Model):
     )
 
 
-class Unit(models.Model):
-    """
-    Unit represents measuring system (kg, lbs and etc...).
-    """
-    short_name = models.CharField(
-        verbose_name='units',
-        max_length=16
-    )
-    full_name = models.CharField(
-        verbose_name='units',
-        max_length=64
-    )
-
-
 class Set(models.Model):
     """
     Set defines number of repetitions with required weight.
@@ -67,11 +50,6 @@ class Set(models.Model):
     exercise = models.ForeignKey(
         Exercise,
         related_name='exercise_set',
-        on_delete=models.CASCADE
-    )
-    unit = models.ForeignKey(
-        Unit,
-        related_name='unit_set',
         on_delete=models.CASCADE
     )
 

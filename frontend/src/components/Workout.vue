@@ -17,17 +17,19 @@
       Add Exercise
     </button>
   </div>
+  <WorkoutSetModal/>
 </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import Exercise from '@/components/Exercise.vue';
+import WorkoutSetModal from '@/components/WorkoutSetModal.vue';
 
 export default {
   name: 'Workout',
 
-  components: { Exercise },
+  components: { Exercise, WorkoutSetModal },
 
   computed: {
     ...mapGetters(['getExercisesIds']),

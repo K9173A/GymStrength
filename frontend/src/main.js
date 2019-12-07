@@ -12,7 +12,7 @@ import '@/assets/css/style.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faUser, faSearch, faCaretDown, faPlus, faTimesCircle,
-  faGripLinesVertical, faTimes, faEquals, faCheck,
+  faGripLinesVertical, faTimes, faCheck, faEllipsisV,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -23,7 +23,7 @@ import store from './store';
 
 library.add(
   faUser, faSearch, faCaretDown, faPlus, faTimesCircle,
-  faGripLinesVertical, faTimes, faEquals, faCheck,
+  faGripLinesVertical, faTimes, faCheck, faEllipsisV,
 );
 
 Vue.use(VueAxios, axios);

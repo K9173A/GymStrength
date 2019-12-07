@@ -2,7 +2,7 @@
 <div class="gs-exercise">
   <div class="gs-exercise-header d-flex">
     <div class="col-1 gs-exercise-header__number">
-      #{{ exerciseIndex + 1}}
+      #{{ exerciseIndex + 1 }}
     </div>
     <div class="col-10 gs-exercise-header__name">
       {{ getExerciseName(exerciseId) }}
@@ -15,13 +15,10 @@
   </div>
   <img src="https://via.placeholder.com/256" alt="exercise">
   <div class="gs-exercise-body">
-    <div class="gs-workout-set-list">
-      <div v-for="(id, index) in getExerciseSetsIds(exerciseId)" :key="id"
-           class="gs-workout-set-wrapper">
-        <WorkoutSet :setId="id" :setIndex="index" :exerciseId="exerciseId"/>
-        <button class="gs-close-btn">
-          <font-awesome-icon icon="times" size="lg"/>
-        </button>
+    <div class="gs-workout-set-list-scroller">
+      <div class="d-flex flex-column">
+        <WorkoutSet v-for="(id, index) in getExerciseSetsIds(exerciseId)" :key="id"
+          :setId="id" :setIndex="index" :exerciseId="exerciseId"/>
       </div>
     </div>
     <div class="gs-workout-set-total d-flex align-items-center justify-content-around">
@@ -110,6 +107,7 @@ img {
   @at-root #{&}__close {
     display: flex;
     align-items: center;
+    padding-left: 0;
   }
 }
 
@@ -118,10 +116,15 @@ img {
   flex-direction: column;
 }
 
-.gs-workout-set-list {
+.gs-workout-set-list-scroller {
   display: inline-block;
   height: 224px;
   overflow-y: scroll;
+}
+
+.gs-workout-set-list {
+  display: flex;
+  flex-direction: column;
 }
 
 .gs-workout-set-total {
@@ -137,11 +140,6 @@ img {
   color: #ffffff;
   font-size: 1.2rem;
   font-weight: 800;
-}
-
-.gs-workout-set-wrapper {
-  display: flex;
-  margin: 8px;
 }
 
 .gs-del-btn {
