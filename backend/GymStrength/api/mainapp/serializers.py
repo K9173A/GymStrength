@@ -59,6 +59,21 @@ class WorkoutSerializer(serializers.ModelSerializer):
         )
 
 
+class WorkoutExerciseSerializer(serializers.ModelSerializer):
+    """
+    WorkoutExercise model serializer.
+    """
+    id = serializers.ReadOnlyField()
+
+    class Meta:
+        model = WorkoutExercise
+        fields = (
+            'id',
+            'workout',
+            'information',
+        )
+
+
 class SetSerializer(serializers.ModelSerializer):
     """
     Set model serializer.
