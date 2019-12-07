@@ -3,21 +3,23 @@ Module for mainapp models definitions.
 """
 from django.db import models
 
+from api.authapp.models import User
+
 
 class Muscle(models.Model):
     """
     Muscle model stores predefined set of muscle names which can be trained
     in the training routine.
     """
-    english_name = models.CharField(
+    name = models.CharField(
         max_length=128
     )
 
 
-class Exercise(models.Model):
+class ExerciseInformation(models.Model):
     """
-    Exercise model stores information about all exercises used in the training
-    process.
+    ExerciseInformation model stores information about all exercises used in
+    the training process.
     """
     name = models.CharField(
         max_length=128
@@ -36,6 +38,12 @@ class Exercise(models.Model):
         null=True
     )
 
+
+class WorkoutExercise(models.Model):
+    workout = models.ForeignKey(
+        Workout,
+
+    )
 
 class Set(models.Model):
     """
@@ -66,4 +74,9 @@ class Workout(models.Model):
     )
     sets = models.ManyToManyField(
         Set
+    )
+    user = models.ForeignKey(
+        User,
+        related_name='user_set',
+        on_delete=models.CASCADE
     )
