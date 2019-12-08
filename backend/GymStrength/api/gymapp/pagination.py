@@ -22,7 +22,7 @@ class WorkoutPageNumberPagination(PageNumberPagination):
             'curr': self.page.number,
             'prev': self.get_previous_page_number(),
             'results': data,
-            'total_pages': self.page.paginator.num_pages,
+            'total': self.page.paginator.num_pages,
             'count': self.page.paginator.count,
         })
 

@@ -16,6 +16,34 @@ const state = {
 };
 
 const actions = {
+  /**
+   * Fetches a chunk of workouts.
+   * @param commit - Vuex function which calls mutations.
+   * @param state - Vuex object which stores states.
+   * @param id - user id.
+   * @param page - current page number.
+   */
+  fetchWorkouts({ commit, state }, { id, page }) {
+    Vue.axios
+      .get(`gym/list_workouts/user/${id}/?=${page}`, token.getAuthHeaders())
+      .then((response) => {
+        const keys = Object.keys(response.data);
+        for (let i = 0; i < keys.length; i += 1) {
+          const key = keys[i];
+          if (key === 'results') {
+            continue;
+          }
+          commit('setPaginationElement', {
+            paginationName: 'workout',
+            elementName: key,
+            value: response.data[key],
+          });
+        }
+        commit('setExercises', response.data.results);
+      })
+      .catch(error => commit('setError', error));
+  },
+
   createWorkout() {
     Vue.axios
       .post(`gym/create_workout/`, {
@@ -38,8 +66,16 @@ const actions = {
 
 const mutations = {
   /**
+   * Sets list of exercises.
+   * @param state - Vuex object which stores states.
+   * @param exercises - exercises list.
+   */
+  setExercises(state, exercises) {
+    state.exercises = exercises;
+  },
+  /**
    * Sets weight for the specified set of the specified exercise.
-   * @param state - Vuex.Store instance property.
+   * @param state - Vuex object which stores states.
    * @param exerciseId - exercise id.
    * @param setId - set id.
    * @param weight - new weight.
