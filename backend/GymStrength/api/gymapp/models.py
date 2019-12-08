@@ -1,5 +1,5 @@
 """
-Module for mainapp models definitions.
+Module for gymapp models definitions.
 """
 from django.db import models
 

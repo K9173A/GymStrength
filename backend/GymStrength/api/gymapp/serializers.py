@@ -1,5 +1,5 @@
 """
-Module for mainapp serializers.
+Module for gymapp serializers.
 """
 from rest_framework import serializers
 

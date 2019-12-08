@@ -1,5 +1,5 @@
 """
-Root GymStrength URL dispatcher. Handles all
+Root GymStrength URL dispatcher. Handles all REST API requests.
 """
 from django.urls import path, include
 from django.conf import settings
@@ -7,11 +7,11 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('api/gym/', include('api.mainapp.urls', namespace='gym')),
-    path('api/admin/', include('api.adminapp.urls', namespace='admin')),
-    path('api/auth/', include('api.authapp.urls', namespace='auth')),
-    path('api/auth/', include('djoser.urls')),
-    path('api/auth/', include('djoser.urls.jwt')),
+    path('api/gym/', include('api.gymapp.urls', namespace='gym')),
+    # path('api/admin/', include('api.adminapp.urls', namespace='admin')),
+    # path('api/auth/', include('api.authapp.urls', namespace='auth')),
+    # path('api/auth/', include('djoser.urls')),
+    # path('api/auth/', include('djoser.urls.jwt')),
 ]
 
 if settings.DEBUG:

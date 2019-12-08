@@ -1,3 +1,5 @@
+import token from '@/scripts/token';
+
 const state = {
   exercises: {
     1: {
@@ -14,7 +16,15 @@ const state = {
 };
 
 const actions = {
+  createWorkout() {
+    Vue.axios
+      .post(`gym/create_workout/`, {
+
+      }, token.getAuthHeaders())
+  },
+
   addExercise() {
+
     // show modal window
     // axios add!
     console.log('show modal form');
