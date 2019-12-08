@@ -15,8 +15,9 @@ Welcome to GymStrength's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Структура:
+   :caption: Backend:
 
+   backend
    mainapp
 
 Indices and tables
