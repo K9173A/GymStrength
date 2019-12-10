@@ -9,9 +9,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('api/gym/', include('api.gymapp.urls', namespace='gym')),
     # path('api/admin/', include('api.adminapp.urls', namespace='admin')),
-    # path('api/auth/', include('api.authapp.urls', namespace='auth')),
-    # path('api/auth/', include('djoser.urls')),
-    # path('api/auth/', include('djoser.urls.jwt')),
+    path('api/auth/', include('api.authapp.urls', namespace='auth')),
+    path('api/auth/', include('djoser.urls')),
+    path('api/auth/', include('djoser.urls.jwt')),
 ]
 
 if settings.DEBUG:

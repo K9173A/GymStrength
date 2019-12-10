@@ -2,6 +2,8 @@ import Vue from 'vue';
 
 import Router from 'vue-router';
 
+import store from '@/storage/index';
+
 
 Vue.use(Router);
 
@@ -15,7 +17,7 @@ const router = new Router({
     {
       path: '/gym',
       name: 'plan',
-      // meta: { requiresAuth: true },
+      meta: { requiresAuth: true },
       component: () => import('./views/Plan.vue'),
     },
     {
@@ -47,6 +49,24 @@ const router = new Router({
     },
   */
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth) {
+    if (store.getters.getAccessToken) {
+      if (store.dispatch('verifyToken')) {
+        next();
+      } else {
+        if (store.dispatch('refreshToken')) {
+          next();
+        } else {
+          next({ name: 'login' });
+        }
+      }
+    } else {
+      next({ name: 'registration' });
+    }
+  }
 });
 
 export default router;
