@@ -13,7 +13,7 @@ const actions = {};
 const mutations = {
   setPaginationElement(state, { paginationName, elementName, value }) {
     state[paginationName][elementName] = value;
-  }
+  },
 };
 
 const getters = {};

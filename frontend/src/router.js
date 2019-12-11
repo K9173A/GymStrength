@@ -2,7 +2,7 @@ import Vue from 'vue';
 
 import Router from 'vue-router';
 
-import store from '@/storage/index';
+import store from '@/store/index';
 
 
 Vue.use(Router);
@@ -54,14 +54,10 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth) {
     if (store.getters.getAccessToken) {
-      if (store.dispatch('verifyToken')) {
+      if (store.dispatch('verifyToken') || store.dispatch('refreshToken')) {
         next();
       } else {
-        if (store.dispatch('refreshToken')) {
-          next();
-        } else {
-          next({ name: 'login' });
-        }
+        next({ name: 'login' });
       }
     } else {
       next({ name: 'registration' });

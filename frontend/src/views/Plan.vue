@@ -49,8 +49,8 @@ export default {
   },
 
   mounted() {
-    this.fetchWorkouts();
-  }
+    // this.fetchWorkouts();
+  },
 };
 </script>
 

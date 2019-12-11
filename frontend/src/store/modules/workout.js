@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 const state = {
   exercises: {
     1: {
@@ -17,50 +19,35 @@ const actions = {
   /**
    * Fetches a chunk of workouts.
    * @param commit - Vuex function which calls mutations.
-   * @param state - Vuex object which stores states.
    * @param getters - Vuex object which stores getters.
    * @param id - user id.
    * @param page - current page number.
    */
-  fetchWorkouts({ commit, state, getters }, { id, page }) {
+  fetchWorkouts({ commit, getters }, { id, page }) {
     Vue.axios
       .get(`gym/list_workouts/user/${id}/?=${page}`, getters.getAuthHeaders())
       .then((response) => {
         const keys = Object.keys(response.data);
         for (let i = 0; i < keys.length; i += 1) {
           const key = keys[i];
-          if (key === 'results') {
-            continue;
+          if (key !== 'results') {
+            commit('setPaginationElement', {
+              paginationName: 'workout',
+              elementName: key,
+              value: response.data[key],
+            });
           }
-          commit('setPaginationElement', {
-            paginationName: 'workout',
-            elementName: key,
-            value: response.data[key],
-          });
         }
         commit('setExercises', response.data.results);
       })
       .catch(error => commit('setError', error));
   },
 
-  createWorkout() {
-    Vue.axios
-      .post(`gym/create_workout/`, {
+  createWorkout() {},
 
-      }, token.getAuthHeaders())
-  },
+  addExercise() {},
 
-  addExercise() {
-
-    // show modal window
-    // axios add!
-    console.log('show modal form');
-  },
-
-  deleteExercise(exerciseId) {
-    // axios delete!
-    console.log(exerciseId);
-  },
+  deleteExercise() {},
 };
 
 const mutations = {

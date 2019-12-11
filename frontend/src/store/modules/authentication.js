@@ -1,16 +1,11 @@
+import Vue from 'vue';
+
 const state = {
   accessTokenKey: 'jwtAccessToken',
   refreshTokenKey: 'jwtRefreshToken',
 };
 
 const actions = {
-  /**
-   * Logs user out by clearing his auth token.
-   * @param context - context object.
-   */
-  logout({ commit }) {
-    commit('removeAccessToken');
-  },
   /**
    * Validates JWT access token.
    * @param getters - Vuex object which stores getters.
@@ -35,6 +30,28 @@ const actions = {
         return true;
       })
       .catch(() => false);
+  },
+  /**
+   * Logs user in by acquiring pair of JWT tokens.
+   * @param commit - Vuex function which calls mutations.
+   * @param credentials - object with username and password fields.
+   */
+  login({ commit }, credentials) {
+    Vue.axios
+      .post('auth/jwt/create/', credentials)
+      .then((response) => {
+        commit('setAccessToken', response.data.access);
+        commit('setRefreshToken', response.data.refresh);
+        this.$router.push({ name: 'home' });
+      })
+      .catch(error => commit('setError', error));
+  },
+  /**
+   * Logs user out by clearing his auth token.
+   * @param commit - Vuex function which calls mutations.
+   */
+  logout({ commit }) {
+    commit('removeAccessToken');
   },
 };
 
@@ -89,7 +106,7 @@ const getters = {
   getAuthHeaders(state) {
     return {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem(state.accessTokenKey)}`
+        Authorization: `Bearer ${localStorage.getItem(state.accessTokenKey)}`,
       },
     };
   },
