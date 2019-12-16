@@ -39,6 +39,14 @@ class UserProfile(models.Model):
         choices=GENDER_CHOICES,
         default=0
     )
+    height = models.IntegerField(
+        verbose_name='height',
+        blank=True
+    )
+    weight = models.IntegerField(
+        verbose_name='weight',
+        blank=True
+    )
 
 
 @receiver(user_activated)
