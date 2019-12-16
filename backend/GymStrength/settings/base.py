@@ -182,3 +182,10 @@ SIMPLE_JWT = {
 # ============================================================================
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = False
+
+# ============================================================================
+# Other custom settings
+# ============================================================================
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '../media')
+USER_AVATARS_DIR_NAME = 'user_avatars'

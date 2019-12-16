@@ -31,7 +31,7 @@ class UserProfile(models.Model):
     )
     avatar = models.ImageField(
         verbose_name='avatar',
-        upload_to=settings.USER_AVATARS_DIR,
+        upload_to=settings.USER_AVATARS_DIR_NAME,
         blank=True
     )
     gender = models.IntegerField(
