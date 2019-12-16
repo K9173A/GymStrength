@@ -9,5 +9,5 @@ import api.gymapp.views as gymapp_api
 app_name = 'gymapp'
 
 urlpatterns = [
-    path('list_workouts/user/', gymapp_api.WokroutListAPIView.as_view()),
+    path('list_workouts/user/', gymapp_api.WorkoutListAPIView.as_view()),
 ]
