@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'djoser',
     'corsheaders',
     'api.authapp',
+    'api.gymapp',
 ]
 
 MIDDLEWARE = [
