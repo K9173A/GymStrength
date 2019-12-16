@@ -37,6 +37,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = get_env_var('SECRET_KEY')
 # Allowed hosts
 ALLOWED_HOSTS = get_env_var('ALLOWED_HOSTS')
+# Root user name
+DB_USER_NAME = get_env_var('DB_USER_NAME')
+# Root user password
+DB_USER_PASS = get_env_var('DB_USER_PASS')
 # Mode
 DEBUG = get_env_var('DEBUG')
 
@@ -95,8 +99,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'gymstrength',
-        'USER': 'admin',
-        'PASSWORD': 'admin',
+        'USER': DB_USER_NAME,
+        'PASSWORD': DB_USER_PASS,
         'HOST': 'localhost',
         'PORT': '5432'
     }
