@@ -5,7 +5,7 @@ from rest_framework import serializers
 
 from .models import (
     Muscle,
-    ExerciseInformation,
+    DatabaseExercise,
     Workout,
     WorkoutExercise,
     Set,
@@ -33,7 +33,7 @@ class ExerciseInformationSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
 
     class Meta:
-        model = ExerciseInformation
+        model = DatabaseExercise
         fields = (
             'id',
             'name',

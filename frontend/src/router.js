@@ -21,6 +21,11 @@ const router = new Router({
       component: () => import('./views/Plan.vue'),
     },
     {
+      path: '/exercises',
+      name: 'exercises',
+      component: () => import('./views/Exercises.vue'),
+    },
+    {
       path: '/calculators',
       name: 'calculators',
       component: () => import('./views/Calculator.vue'),

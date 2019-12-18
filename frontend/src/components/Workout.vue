@@ -23,7 +23,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import Exercise from '@/components/Exercise.vue';
+import Exercise from '@/components/WorkoutExercise.vue';
 import WorkoutSetModal from '@/components/WorkoutSetModal.vue';
 
 export default {

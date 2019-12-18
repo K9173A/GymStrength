@@ -101,6 +101,7 @@ export default {
 
 <style scoped>
 .form {
+  margin-top: 16px;
   max-width: 30rem;
 }
 
