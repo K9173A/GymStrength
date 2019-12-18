@@ -2,7 +2,6 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-6">
-      <Error/>
       <div class="card form">
         <div class="card-body">
           <form id="register-form">
@@ -68,13 +67,10 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
-import Error from '@/components/Error.vue';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'Registration',
-
-  components: { Error },
 
   data() {
     return {
@@ -87,20 +83,17 @@ export default {
     };
   },
 
-  ...mapMutations(['setError']),
-
   methods: {
+    ...mapActions(['register']),
+
     submit() {
-      this.axios
-        .post('auth/users/', {
-          username: this.username,
-          firstName: this.firstName,
-          lastName: this.lastName,
-          email: this.email,
-          password: this.password,
-        })
-        .then(() => this.$router.push({ name: 'index' }))
-        .catch(error => this.setError(error));
+      this.register({
+        username: this.username,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        password: this.password,
+      });
     },
   },
 };
@@ -108,6 +101,7 @@ export default {
 
 <style scoped>
 .form {
+  margin-top: 16px;
   max-width: 30rem;
 }
 

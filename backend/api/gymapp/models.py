@@ -16,9 +16,9 @@ class Muscle(models.Model):
     )
 
 
-class ExerciseInformation(models.Model):
+class DatabaseExercise(models.Model):
     """
-    ExerciseInformation model stores information about all exercises used in
+    DatabaseExercise model stores information about all exercises used in
     the training process.
     """
     name = models.CharField(
@@ -65,9 +65,9 @@ class WorkoutExercise(models.Model):
         related_name='exercise_set',
         on_delete=models.CASCADE,
     )
-    information = models.ForeignKey(
-        ExerciseInformation,
-        related_name='information_set',
+    db_exercise = models.ForeignKey(
+        DatabaseExercise,
+        related_name='db_exercise_set',
         on_delete=models.CASCADE,
     )
 

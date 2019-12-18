@@ -1,9 +1,9 @@
 import Vue from 'vue';
 
 const state = {
-  exercises: {
+  workouts: null,
+  workoutExercises: {
     1: {
-      name: 'Bench press',
       sets: {
         1: { weight: 80, repetitions: 5 },
         2: { weight: 80, repetitions: 5 },
@@ -13,41 +13,81 @@ const state = {
       },
     },
   },
+  databaseExercises: {
+    1: {
+      name: 'Bench press',
+      description: 'This is bench press description!',
+      image: null,
+    }
+  },
 };
 
 const actions = {
   /**
-   * Fetches a chunk of workouts.
+   * Fetches list of workouts.
+   * @param dispatch - Vuex function which calls actions.
    * @param commit - Vuex function which calls mutations.
    * @param getters - Vuex object which stores getters.
    * @param id - user id.
-   * @param page - current page number.
+   * @param page - requested page number.
    */
-  fetchWorkouts({ commit, getters }, { id, page }) {
+  fetchWorkouts({ dispatch, commit, getters }, { id, page }) {
     Vue.axios
       .get(`gym/list_workouts/user/${id}/?=${page}`, getters.getAuthHeaders())
       .then((response) => {
-        const keys = Object.keys(response.data);
-        for (let i = 0; i < keys.length; i += 1) {
-          const key = keys[i];
-          if (key !== 'results') {
-            commit('setPaginationElement', {
-              paginationName: 'workout',
-              elementName: key,
-              value: response.data[key],
-            });
-          }
-        }
-        commit('setExercises', response.data.results);
+        dispatch('applyPagination', { response, paginationName: 'workout' });
+        commit('setWorkouts', response.data.results);
       })
       .catch(error => commit('setError', error));
   },
-
-  createWorkout() {},
-
-  addExercise() {},
-
-  deleteExercise() {},
+  /**
+   * Fetches list of database exercises.
+   * @param dispatch - Vuex function which calls actions.
+   * @param commit - Vuex function which calls mutations.
+   * @param page - requested page number.
+   */
+  fetchDatabaseExercises({ dispatch, commit }, page) {
+    Vue.axios
+      .get(`gym/list_db_exercises/?=${page}`)
+      .then((response) => {
+        dispatch('applyPagination', { response, paginationName: 'databaseExercises' });
+        commit('setDatabaseExercises');
+      })
+      .catch(error => commit('setError', error));
+  },
+  /**
+   * Fetches list of workout exercises.
+   * @param dispatch - Vuex function which calls actions.
+   * @param commit - Vuex function which calls mutations.
+   * @param id - user id.
+   * @param page - requested page number.
+   */
+  fetchWorkoutExercises({ dispatch, commit }, { id, page }) {
+    Vue.axios
+      .get(`gym/list_exercises/user/${id}/?=${page}`, getters.getAuthHeaders())
+      .then((response) => {
+        dispatch('applyPagination', { response, paginationName: 'workoutExercises' });
+        commit('setWorkoutExercises', response.data.results);
+      })
+      .catch(error => commit('setError', error));
+  },
+  /**
+   * Sets new pagination information.
+   * @param commit - Vuex function which calls mutations.
+   * @param response - response object.
+   * @param paginationName - name of pagination object.
+   */
+  applyPagination({ commit }, { response, paginationName }) {
+    const elementNames = Object.keys(response.data);
+    for (let i = 0; i < elementNames.length; i += 1) {
+      const elementName = elementNames[i];
+      if (elementName !== 'results') {
+        commit('setPaginationElement', {
+          paginationName, elementName, value: response.data[elementName],
+        });
+      }
+    }
+  },
 };
 
 const mutations = {

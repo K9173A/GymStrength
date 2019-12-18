@@ -37,6 +37,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = get_env_var('SECRET_KEY')
 # Allowed hosts
 ALLOWED_HOSTS = get_env_var('ALLOWED_HOSTS')
+# Root user name
+DB_USER_NAME = get_env_var('DB_USER_NAME')
+# Root user password
+DB_USER_PASS = get_env_var('DB_USER_PASS')
 # Mode
 DEBUG = get_env_var('DEBUG')
 
@@ -54,6 +58,7 @@ INSTALLED_APPS = [
     'djoser',
     'corsheaders',
     'api.authapp',
+    'api.gymapp',
 ]
 
 MIDDLEWARE = [
@@ -95,8 +100,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'gymstrength',
-        'USER': 'admin',
-        'PASSWORD': 'admin',
+        'USER': DB_USER_NAME,
+        'PASSWORD': DB_USER_PASS,
         'HOST': 'localhost',
         'PORT': '5432'
     }
@@ -122,6 +127,13 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+
+# ============================================================================
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.2/howto/static-files/
+# ============================================================================
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, '../static')
 
 # ============================================================================
 # Authentication
@@ -177,3 +189,10 @@ SIMPLE_JWT = {
 # ============================================================================
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = False
+
+# ============================================================================
+# Other custom settings
+# ============================================================================
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '../media')
+USER_AVATARS_DIR_NAME = 'user_avatars'

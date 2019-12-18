@@ -27,17 +27,26 @@ class UserProfile(models.Model):
     )
     user = models.OneToOneField(
         User,
+        related_name='profile',
         on_delete=models.CASCADE
     )
     avatar = models.ImageField(
         verbose_name='avatar',
-        upload_to=settings.USER_AVATARS_DIR,
+        upload_to=settings.USER_AVATARS_DIR_NAME,
         blank=True
     )
     gender = models.IntegerField(
         verbose_name='gender',
         choices=GENDER_CHOICES,
         default=0
+    )
+    height = models.IntegerField(
+        verbose_name='height',
+        blank=True
+    )
+    weight = models.IntegerField(
+        verbose_name='weight',
+        blank=True
     )
 
 

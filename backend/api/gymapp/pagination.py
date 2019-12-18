@@ -5,9 +5,10 @@ from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 
 
-class WorkoutPageNumberPagination(PageNumberPagination):
+class GymPageNumberPagination(PageNumberPagination):
     """
-    Pagination class for list of workouts.
+    Pagination class which can be applied to workouts, database exercises
+    and workout exercises.
     """
     page_size = 10
     page_query_param = 'page'

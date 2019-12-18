@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from .serializers import (
     Workout,
 )
-from .pagination import WorkoutPageNumberPagination
+from .pagination import GymPageNumberPagination
 
 
 class WorkoutListAPIView(generics.ListAPIView):
@@ -16,7 +16,7 @@ class WorkoutListAPIView(generics.ListAPIView):
     Provides method(s): GET.
     """
     serializer_class = Workout
-    pagination_class = WorkoutPageNumberPagination
+    pagination_class = GymPageNumberPagination
 
 
 class WorkoutCreateAPIView(generics.CreateAPIView):

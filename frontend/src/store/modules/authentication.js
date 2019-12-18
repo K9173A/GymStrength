@@ -42,7 +42,7 @@ const actions = {
       .then((response) => {
         commit('setAccessToken', response.data.access);
         commit('setRefreshToken', response.data.refresh);
-        this.$router.push({ name: 'home' });
+        this.$router.push({ name: 'index' });
       })
       .catch(error => commit('setError', error));
   },
@@ -52,6 +52,18 @@ const actions = {
    */
   logout({ commit }) {
     commit('removeAccessToken');
+  },
+  /**
+   * Registers user.
+   * @param commit - Vuex function which calls mutations.
+   * @param credentials - object with the following fields:
+   * username, firstName, lastName, email, password.
+   */
+  register({ commit }, credentials) {
+    Vue.axios
+      .post('auth/users/', credentials)
+      .then(() => this.$router.push({ name: 'index' }))
+      .catch(error => commit('setError', error));
   },
 };
 

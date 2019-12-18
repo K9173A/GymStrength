@@ -34,11 +34,11 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters } from 'vuex';
 import WorkoutSet from '@/components/WorkoutSet.vue';
 
 export default {
-  name: 'Exercise',
+  name: 'WorkoutExercise',
 
   components: { WorkoutSet },
 
@@ -51,18 +51,7 @@ export default {
       'getExerciseTotalWeight',
       'getExerciseTotalReps',
     ]),
-  },
-
-  methods: {
-    ...mapMutations(['setExerciseWeightSystem']),
-
-    onChangeUnits(weightSystem) {
-      this.setExerciseWeightSystem({
-        exerciseId: this.exerciseId,
-        weightSystem,
-      });
-    },
-  },
+  }
 };
 </script>
 

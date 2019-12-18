@@ -16,6 +16,11 @@
         </router-link>
       </li>
       <li class="nav-item">
+        <router-link :to="{ name: 'exercises' }" class="nav-link menu__item">
+          Exercises
+        </router-link>
+      </li>
+      <li class="nav-item">
         <DropdownMenu/>
       </li>
     </ul>

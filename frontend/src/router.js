@@ -21,9 +21,13 @@ const router = new Router({
       component: () => import('./views/Plan.vue'),
     },
     {
+      path: '/exercises',
+      name: 'exercises',
+      component: () => import('./views/Exercises.vue'),
+    },
+    {
       path: '/calculators',
       name: 'calculators',
-      props: true,
       component: () => import('./views/Calculator.vue'),
     },
     {
@@ -31,23 +35,21 @@ const router = new Router({
       name: 'registration',
       component: () => import('./views/Registration.vue'),
     },
+    // {
+    //   path: '/activate/:uid/:token',
+    //   name: 'activation',
+    //   props: true,
+    //   component: () => import(),
+    // },
+    // {
+    //   path: '/login',
+    //   name: 'login',
+    //   component: () => import('./components/form/Login.vue'),
+    // },
     {
       path: '*',
       redirect: '/',
     },
-  /*
-    {
-      path: '/activate/:uid/:token',
-      name: 'activation',
-      props: true,
-      component: () => import('./views/Activate.vue'),
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: () => import('./components/form/Login.vue'),
-    },
-  */
   ],
 });
 
@@ -62,6 +64,8 @@ router.beforeEach((to, from, next) => {
     } else {
       next({ name: 'registration' });
     }
+  } else {
+    next();
   }
 });
 

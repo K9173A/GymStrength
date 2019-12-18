@@ -6,8 +6,6 @@ from .base import *
 
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '../media')
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = '1025'
 EMAIL_HOST_USER = 'admin@gymstrength.local'
