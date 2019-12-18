@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 
 import authentication from '@/store/modules/authentication';
 import errorHandler from '@/store/modules/errorHandler';
-import workout from '@/store/modules/workout';
+import gym from '@/store/modules/gym';
 import pagination from '@/store/modules/pagination';
 
 
@@ -13,7 +13,7 @@ export default new Vuex.Store({
   modules: {
     authentication,
     errorHandler,
-    workout,
+    gym,
     pagination,
   },
 });
