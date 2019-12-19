@@ -35,9 +35,17 @@
 * Пользователь, который создаётся через PostgreSQL, необходим для доступа к БД от лица приложения Django. Поэтому данные пользователя и прописываются в `settings.py` в `DATABASES`. Вместе с созданием данного пользователя мы устанавливаем его права по отношению к БД.
 * Пользователь, который создаётся через Django, необходим для доступа внутрь самой БД, чтобы работать с данными. Права, связанные с данным пользователем позволяют получить доступ к админке Django (`django.admin.site`).
 
+Далее необходимо выполнить миграции моделей из приложений Django:
+
+.. code-block:: bash
+
+    python manage.py makemigrations authapp
+    python manage.py makemigrations gymapp
+    python manage.py migrate
+
 Создать суперпользователя Django. Можно указать параметр ``--database gymstrength``, если в настройках в ``DATABASES``
 несколько БД. По умолчанию выбирается БД по ключу ``default``. Запомните свой пароль, он понадобится ещё не раз!
 
 .. code-block:: bash
 
-    python manage.py createsuperuser --username admin --email gymstrength@gmail.com
+    python manage.py createsuperuser --username gymadmin --email gymstrength@gmail.com
