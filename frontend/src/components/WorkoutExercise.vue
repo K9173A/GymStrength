@@ -5,7 +5,7 @@
       #{{ exerciseIndex + 1 }}
     </div>
     <div class="col-10 gs-exercise-header__name">
-      {{ getExerciseName(exerciseId) }}
+      {{ getWorkoutExerciseName(exerciseId) }}
     </div>
     <div class="col-1 gs-exercise-header__close">
       <button type="button" class="btn gs-del-btn">
@@ -17,16 +17,16 @@
   <div class="gs-exercise-body">
     <div class="gs-workout-set-list-scroller">
       <div class="d-flex flex-column">
-        <WorkoutSet v-for="(id, index) in getExerciseSetsIds(exerciseId)" :key="id"
+        <WorkoutSet v-for="(id, index) in getWorkoutExerciseSetsIds(exerciseId)" :key="id"
           :setId="id" :setIndex="index" :exerciseId="exerciseId"/>
       </div>
     </div>
     <div class="gs-workout-set-total d-flex align-items-center justify-content-around">
       <div class="badge badge-primary">
-        Weight | {{ getExerciseTotalWeight(exerciseId) }} kg
+        Weight | {{ getWorkoutExerciseTotalWeight(exerciseId) }} kg
       </div>
       <div class="badge badge-primary">
-        Repetitions | {{ getExerciseTotalReps(exerciseId) }}
+        Repetitions | {{ getWorkoutExerciseTotalReps(exerciseId) }}
       </div>
     </div>
   </div>
@@ -46,12 +46,12 @@ export default {
 
   computed: {
     ...mapGetters([
-      'getExerciseName',
-      'getExerciseSetsIds',
-      'getExerciseTotalWeight',
-      'getExerciseTotalReps',
+      'getWorkoutExerciseName',
+      'getWorkoutExerciseSetsIds',
+      'getWorkoutExerciseTotalWeight',
+      'getWorkoutExerciseTotalReps',
     ]),
-  }
+  },
 };
 </script>
 

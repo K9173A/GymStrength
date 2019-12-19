@@ -123,37 +123,37 @@ const mutations = {
 
 const getters = {
   /**
-   * Gets exercise name by its id.
+   * Gets workout exercise name by its id.
    * @param state - Vuex object which stores states.
    * @returns {string} exercise name.
    */
-  getExerciseName: state => exerciseId => state.exercises[exerciseId].name,
+  getWorkoutExerciseName: state => exerciseId => state.exercises[exerciseId].name,
   /**
    * Gets specific set of exercise.
    * @param state - Vuex object which stores states.
    * @returns {object} - set object.
    */
-  getExerciseSet: state => (exerciseId, setId) => state.exercises[exerciseId].sets[setId],
+  getWorkoutExerciseSet: state => (exerciseId, setId) => state.exercises[exerciseId].sets[setId],
   /**
    * Gets object with all sets ids for the specified exercise.
    * @param state - Vuex object which stores states.
    * @returns {object} object which contains all sets ids for the specified
    * exercise.
    */
-  getExerciseSetsIds: state => exerciseId => Object.keys(state.exercises[exerciseId].sets),
+  getWorkoutExerciseSetsIds: state => exerciseId => Object.keys(state.exercises[exerciseId].sets),
   /**
    * Gets array of exercises ids which are being used
    * as keys in the exercises object.
    * @param state - Vuex object which stores states.
    * @returns {string[]} array of Ids.
    */
-  getExercisesIds: state => Object.keys(state.exercises),
+  getWorkoutExercisesIds: state => Object.keys(state.exercises),
   /**
    * Calculates total weight for the specified exercise.
    * @param state - Vuex object which stores states.
    * @returns {number} total weight for the specified exercise.
    */
-  getExerciseTotalWeight: state => (exerciseId) => {
+  getWorkoutExerciseTotalWeight: state => (exerciseId) => {
     let totalWeight = 0;
     const exercise = state.exercises[exerciseId];
     const keys = Object.keys(exercise.sets);
@@ -165,10 +165,10 @@ const getters = {
   },
   /**
    * Calculates total amount of repetitions for the specified exercise.
-   * @param state - Vuex object which stores states..
+   * @param state - Vuex object which stores states.
    * @returns {number} total amount of repetitions for the specified exercise.
    */
-  getExerciseTotalReps: state => (exerciseId) => {
+  getWorkoutExerciseTotalReps: state => (exerciseId) => {
     let totalReps = 0;
     const exercise = state.exercises[exerciseId];
     const keys = Object.keys(exercise.sets);
@@ -178,6 +178,25 @@ const getters = {
     }
     return totalReps;
   },
+  /**
+   * Gets object with database exercises ids.
+   * @param state - Vuex object which stores states.
+   * @returns {object} object with exercises.
+   */
+  getDatabaseExercisesIds: state => Object.keys(state.databaseExercises),
+  /**
+   * Gets database exercise name.
+   * @param state - Vuex object which stores states.
+   * @returns {string} database exercise name.
+   */
+  getDatabaseExerciseName: state => exerciseId => state.databaseExercises[exerciseId].name,
+  /**
+   * Gets database exercise description.
+   * @param state - Vuex object which stores states.
+   * @returns {string} database exercise description.
+   */
+  getDatabaseExerciseDescription:
+      state => exerciseId => state.databaseExercises[exerciseId].description,
 };
 
 export default {

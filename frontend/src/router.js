@@ -23,7 +23,7 @@ const router = new Router({
     {
       path: '/exercises',
       name: 'exercises',
-      component: () => import('./views/Exercises.vue'),
+      component: () => import('./views/ExercisesList.vue'),
     },
     {
       path: '/calculators',

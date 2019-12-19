@@ -35,7 +35,19 @@ const mutations = {
   },
 };
 
+const getters = {
+  /**
+   * Gets pagination element of specified pagination.
+   * @param state - Vuex object which stores states.
+   * @returns {object} - pagination element.
+   */
+  getPaginationElement: state => (paginationName, elementName) => {
+    return state[paginationName][elementName];
+  },
+};
+
 export default {
   mutations,
   state,
+  getters,
 };
