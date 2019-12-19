@@ -26,9 +26,9 @@ class MuscleSerializer(serializers.ModelSerializer):
         )
 
 
-class ExerciseInformationSerializer(serializers.ModelSerializer):
+class DatabaseExerciseSerializer(serializers.ModelSerializer):
     """
-    ExerciseInformation model serializer.
+    DatabaseExercise model serializer.
     """
     id = serializers.ReadOnlyField()
 
