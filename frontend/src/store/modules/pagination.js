@@ -41,9 +41,8 @@ const getters = {
    * @param state - Vuex object which stores states.
    * @returns {object} - pagination element.
    */
-  getPaginationElement: state => (paginationName, elementName) => {
-    return state[paginationName][elementName];
-  },
+  getPaginationElement:
+      state => (paginationName, elementName) => state[paginationName][elementName],
 };
 
 export default {

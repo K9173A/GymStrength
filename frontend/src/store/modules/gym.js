@@ -18,7 +18,7 @@ const state = {
       name: 'Bench press',
       description: 'This is bench press description!',
       image: null,
-    }
+    },
   },
 };
 
@@ -59,10 +59,11 @@ const actions = {
    * Fetches list of workout exercises.
    * @param dispatch - Vuex function which calls actions.
    * @param commit - Vuex function which calls mutations.
+   * @param getters - Vuex object which stores getters.
    * @param id - user id.
    * @param page - requested page number.
    */
-  fetchWorkoutExercises({ dispatch, commit }, { id, page }) {
+  fetchWorkoutExercises({ dispatch, commit, getters }, { id, page }) {
     Vue.axios
       .get(`gym/list_exercises/user/${id}/?=${page}`, getters.getAuthHeaders())
       .then((response) => {

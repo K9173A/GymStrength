@@ -1,5 +1,6 @@
 <template>
 <div class="container my-4">
+  <Paginator :paginationName="'databaseExercises'" />
   <div class="d-flex flex-column">
     <DatabaseExercise v-for="(id, index) in getDatabaseExercisesIds" :key="id"
               :exerciseId="id" :exerciseIndex="index" class="my-3 mx-auto"/>

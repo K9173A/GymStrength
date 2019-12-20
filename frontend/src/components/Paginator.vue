@@ -2,7 +2,7 @@
 <nav>
   <ul class="pagination">
     <li :class="{ disabled: !getPaginationElement(paginationName, 'prev') }" class="page-item">
-      <a v-if="paginationName === 'workout'" class="page-link" aria-label="Previous"
+      <a v-if="paginationName === 'workouts'" class="page-link" aria-label="Previous"
          @onclick="fetchWorkouts(1)">
         <span aria-hidden="true">&laquo;</span>
       </a>
