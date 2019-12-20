@@ -4,26 +4,11 @@ Module for gymapp serializers.
 from rest_framework import serializers
 
 from .models import (
-    Muscle,
     DatabaseExercise,
     Workout,
     WorkoutExercise,
     Set,
 )
-
-
-class MuscleSerializer(serializers.ModelSerializer):
-    """
-    Muscle model serializer.
-    """
-    id = serializers.ReadOnlyField()
-
-    class Meta:
-        model = Muscle
-        fields = (
-            'id',
-            'name',
-        )
 
 
 class DatabaseExerciseSerializer(serializers.ModelSerializer):

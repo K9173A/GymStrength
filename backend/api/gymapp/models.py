@@ -6,16 +6,6 @@ from django.db import models
 from api.authapp.models import User
 
 
-class Muscle(models.Model):
-    """
-    Muscle model stores predefined set of muscle names which can be trained
-    in the training routine.
-    """
-    name = models.CharField(
-        max_length=128
-    )
-
-
 class DatabaseExercise(models.Model):
     """
     DatabaseExercise model stores information about all exercises used in
@@ -30,12 +20,6 @@ class DatabaseExercise(models.Model):
     )
     image = models.ImageField(
         blank=True
-    )
-    muscle = models.ForeignKey(
-        Muscle,
-        related_name='muscle_set',
-        on_delete=models.SET_NULL,
-        null=True
     )
 
 
