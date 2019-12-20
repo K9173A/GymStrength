@@ -49,6 +49,13 @@ class UserProfile(models.Model):
         blank=True
     )
 
+    def __str__(self):
+        """
+        Human-readable representation of user profile.
+        :return: string user name and email.
+        """
+        return f'Profile of {self.user.name} ({self.user.email})'
+
 
 @receiver(user_activated)
 def save_user_profile(sender, user, request, **kwargs):

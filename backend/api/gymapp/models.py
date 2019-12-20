@@ -22,6 +22,13 @@ class DatabaseExercise(models.Model):
         blank=True
     )
 
+    def __str__(self):
+        """
+        Human-readable representation of database exercise.
+        :return: string with database exercise name.
+        """
+        return f'{self.name}'
+
 
 class Workout(models.Model):
     """
@@ -31,6 +38,7 @@ class Workout(models.Model):
     date = models.DateField()
     name = models.CharField(
         max_length=128,
+        default='Workout',
         blank=True
     )
     user = models.ForeignKey(
@@ -38,6 +46,13 @@ class Workout(models.Model):
         related_name='user_set',
         on_delete=models.CASCADE
     )
+
+    def __str__(self):
+        """
+        Human-readable representation of workout.
+        :return: string with user's workout and date.
+        """
+        return f'{self.user.name}\'s {self.name} ({self.date})'
 
 
 class WorkoutExercise(models.Model):
@@ -55,6 +70,13 @@ class WorkoutExercise(models.Model):
         on_delete=models.CASCADE,
     )
 
+    def __str__(self):
+        """
+        Human-readable representation of workout exercise.
+        :return: string with exercise name and workout's id.
+        """
+        return f'{self.db_exercise.name} (Workout id: {self.workout.id})'
+
 
 class Set(models.Model):
     """
@@ -71,3 +93,10 @@ class Set(models.Model):
         related_name='exercise_set',
         on_delete=models.CASCADE
     )
+
+    def __str__(self):
+        """
+        Human-readable representation of workout exercise.
+        :return: string with weight and amount of reps name and workout exercise's id.
+        """
+        return f'{self.weight}x{self.repetition} (Exercise id: {self.exercise.id})'
