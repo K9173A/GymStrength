@@ -20,6 +20,8 @@
 
     sudo service postgresql status
 
+Создание БД
+-----------
 Если процесс активен, то создать пустую БД. Для удобства создаём из скрипта ``create_db.sql``. В этом скрипте также
 создаётся и пользователь, которому будет открыт доступ к БД. В скрипт необходимо передать пароль пользователя. Запомните
 его, он может потребоваться в дальнейшей работе!
@@ -27,7 +29,7 @@
 .. code-block:: bash
 
     cd backend
-    sudo -u postgres psql -f create_db.sql -v v1="my_password"
+    sudo -u postgres psql -f scripts/create_db.sql -v v1="my_password"
 
 Необходимо пояснить, что для работы с БД создаются два пользователя, специфика которых на первый взгляд может показаться
 похожей, но на деле они предназначены для разных целей:
@@ -49,3 +51,25 @@
 .. code-block:: bash
 
     python manage.py createsuperuser --username gymadmin --email gymstrength@gmail.com
+
+Пересоздание БД
+---------------
+Сделать дамп данных. Флаг ``-e`` позволяет исключить данные из дампа:
+
+.. code-block:: bash
+
+    python manage.py dumpdata -e=sessions -e=contenttypes -e=auth -e=authapp -e=admin -o dump.json
+
+Удалить БД:
+
+.. code-block:: bash
+
+    cd backend
+    sudo -u postgres psql -f scripts/delete_db.sql
+
+Пересоздать БД по алгоритму из предыдущего раздела. Залить нужные дампы в БД:
+
+.. code-block:: bash
+
+    python manage.py loaddata dumps/my_dump.json.
+
