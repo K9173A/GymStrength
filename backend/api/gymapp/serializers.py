@@ -19,13 +19,7 @@ class DatabaseExerciseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = DatabaseExercise
-        fields = (
-            'id',
-            'name',
-            'description',
-            'image',
-            'muscle',
-        )
+        fields = ('id', 'name', 'description', 'image',)
 
 
 class WorkoutSerializer(serializers.ModelSerializer):
@@ -36,12 +30,7 @@ class WorkoutSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Workout
-        fields = (
-            'id',
-            'date',
-            'name',
-            'user',
-        )
+        fields = ('id', 'date', 'name', 'user',)
 
 
 class WorkoutExerciseSerializer(serializers.ModelSerializer):
@@ -52,11 +41,7 @@ class WorkoutExerciseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WorkoutExercise
-        fields = (
-            'id',
-            'workout',
-            'information',
-        )
+        fields = ('id', 'workout', 'information',)
 
 
 class SetSerializer(serializers.ModelSerializer):
@@ -67,8 +52,4 @@ class SetSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Set
-        fields = (
-            'weight',
-            'repetition',
-            'exercise',
-        )
+        fields = ('weight', 'repetition', 'exercise',)

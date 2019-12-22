@@ -21,6 +21,10 @@ class DatabaseExercise(models.Model):
     image = models.ImageField(
         blank=True
     )
+    is_active = models.BooleanField(
+        verbose_name='activity',
+        default=True
+    )
 
     def __str__(self):
         """
@@ -46,6 +50,10 @@ class Workout(models.Model):
         related_name='user_set',
         on_delete=models.CASCADE
     )
+    is_active = models.BooleanField(
+        verbose_name='activity',
+        default=True
+    )
 
     def __str__(self):
         """
@@ -68,6 +76,10 @@ class WorkoutExercise(models.Model):
         DatabaseExercise,
         related_name='db_exercise_set',
         on_delete=models.CASCADE,
+    )
+    is_active = models.BooleanField(
+        verbose_name='activity',
+        default=True
     )
 
     def __str__(self):
@@ -92,6 +104,10 @@ class Set(models.Model):
         WorkoutExercise,
         related_name='exercise_set',
         on_delete=models.CASCADE
+    )
+    is_active = models.BooleanField(
+        verbose_name='activity',
+        default=True
     )
 
     def __str__(self):
