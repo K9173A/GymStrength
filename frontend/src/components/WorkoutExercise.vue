@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import WorkoutSet from '@/components/WorkoutSet.vue';
 
 export default {
@@ -51,6 +51,14 @@ export default {
       'getWorkoutExerciseTotalWeight',
       'getWorkoutExerciseTotalReps',
     ]),
+  },
+
+  methods: {
+    ...mapActions(['fetchWorkoutExercises']),
+  },
+
+  created() {
+    this.fetchWorkoutExercises({ id: 1, page: 1 });
   },
 };
 </script>

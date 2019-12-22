@@ -1,19 +1,19 @@
 const state = {
-  workout: {
+  workouts: {
     prev: null,
     next: null,
     curr: 1,
     total: 1,
     count: 0,
   },
-  databaseExercise: {
+  workoutExercises: {
     prev: null,
     next: null,
     curr: 1,
     total: 1,
     count: 0,
   },
-  workoutExercise: {
+  databaseExercises: {
     prev: null,
     next: null,
     curr: 1,

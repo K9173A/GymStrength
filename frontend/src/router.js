@@ -15,20 +15,32 @@ const router = new Router({
       component: () => import('./views/Index.vue'),
     },
     {
-      path: '/gym',
-      name: 'plan',
+      path: '/workouts/?page=:page?',
+      name: 'workouts',
       meta: { requiresAuth: true },
-      component: () => import('./views/Plan.vue'),
+      component: () => import('./views/Workouts.vue'),
     },
+    // {
+    //   path: 'workout_exercises?page=:page',
+    //   name: 'workoutExercises',
+    //   meta: { requiresAuth: true },
+    //   props: route => ({ page: route.params.page || 1 }),
+    //   component: () => import('./views/WorkoutExercises.vue'),
+    // },
     {
-      path: '/exercises',
-      name: 'exercises',
+      path: '/exercises/:page?',
+      name: 'databaseExercises',
       component: () => import('./views/ExercisesList.vue'),
     },
     {
       path: '/calculators',
       name: 'calculators',
       component: () => import('./views/Calculator.vue'),
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import('./views/About.vue'),
     },
     {
       path: '/register',

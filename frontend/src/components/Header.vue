@@ -1,35 +1,45 @@
 <template>
 <nav class="navbar navbar-expand-lg shadow-sm menu">
   <div class="container">
-    <router-link :to="{ name: 'index' }" class="col-xs-3 navbar-brand">
-      <img src="@/assets/img/logo.png" class="menu__logo" alt="logo">
+    <router-link :to="{ name: 'index' }" class="col-xs-3 navbar-brand menu__logo">
+      <font-awesome-icon icon="dumbbell" size="lg"/>
+      GYMSTRENGTH
     </router-link>
     <ul class="col-xs-6 navbar-nav mx-auto">
       <li class="nav-item">
-        <router-link :to="{ name: 'index' }" class="nav-link menu__item">
+        <router-link active-class="active" :to="{ name: 'index' }"
+                     class="nav-link menu__item" exact>
           Main
         </router-link>
       </li>
       <li class="nav-item">
-        <router-link :to="{ name: 'plan' }" class="nav-link menu__item">
+        <router-link active-class="active" :to="{ name: 'workouts', params: { page: 1 }}"
+                     class="nav-link menu__item">
           Training plan
         </router-link>
       </li>
       <li class="nav-item">
-        <router-link :to="{ name: 'exercises' }" class="nav-link menu__item">
+        <router-link active-class="active" :to="{ name: 'databaseExercises', params: { page: 1 }}"
+                     class="nav-link menu__item">
           Exercises
         </router-link>
       </li>
       <li class="nav-item">
         <DropdownMenu/>
       </li>
+      <li class="nav-item">
+        <router-link active-class="active" :to="{ name: 'about' }"
+                     class="nav-link menu__item">
+          About
+        </router-link>
+      </li>
     </ul>
     <div class="col-xs-3 btn-group">
-      <a href="#" class="btn btn-search">
-        <font-awesome-icon icon="search" size="lg" />
-      </a>
-      <router-link :to="{ name: 'registration' }" class="btn btn-user">
-        <font-awesome-icon icon="user" size="lg" />
+      <router-link :to="{ name: 'index' }" class="header-btn btn-search">
+        <font-awesome-icon icon="search"/>
+      </router-link>
+      <router-link :to="{ name: 'registration' }" class="header-btn btn-user">
+        <font-awesome-icon icon="user"/>
       </router-link>
     </div>
   </div>
@@ -53,54 +63,64 @@ export default {
 </script>
 
 <style scoped lang="scss">
+$main-color: #ececec;
+
 .menu {
-  padding-top: 16px;
-  padding-bottom: 16px;
-  background: linear-gradient(#003366, #00499b);
+  padding: 8px 0 8px 0;
 
   @at-root #{&}__item {
-    min-width: 64px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: #ffffff;
-    transition: 0.4s ease-in-out;
+    color: $main-color;
     border-top: 2px solid rgba(0, 0, 0, 0);
     border-bottom: 2px solid rgba(0, 0, 0, 0);
+    transition: .3s ease-in-out;
     &:hover {
-      border-top: 2px solid #ffffff;
-      border-bottom: 2px solid #ffffff;
+      border-top: 2px solid $main-color;
+      border-bottom: 2px solid $main-color;
     }
   }
   @at-root #{&}__logo {
-    width: 32px;
-    height: 32px;
+    text-align: center;
+    color: $main-color;
+    font-weight: 300;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    letter-spacing: 6px;
   }
 }
 
-.btn {
-  border-radius: 0.5em;
-}
-
-.btn-search,
-.btn-user {
+.header-btn {
   height: 100%;
+  padding: 4px 8px 4px 8px;
   width: 64px;
-  border: none;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  user-select: none;
+  color: #1d1d1d;
 }
 
 .btn-search {
-  color: #0076eb;
-  background-color: #cdcdcd;
+  background-color: $main-color;
+  transition: all .3s;
   &:hover {
-    background-color: #ebebeb;
+    background-color: #ffffff;
   }
 }
+
 .btn-user {
-  color: #ffffff;
-  background-color: #0069d2;
+  background-color: #00b036;
+  transition: all .3s;
   &:hover {
-    background-color: #0076eb;
+    background-color: #00c739;
   }
+}
+
+.active {
+  color: #ffdc0a;
 }
 </style>

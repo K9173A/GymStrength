@@ -33,7 +33,7 @@ const actions = {
    */
   fetchWorkouts({ dispatch, commit, getters }, { id, page }) {
     Vue.axios
-      .get(`gym/list_workouts/user/${id}/?=${page}`, getters.getAuthHeaders())
+      .get(`gym/list_workouts/user/${id}/?page=${page}`, getters.getAuthHeaders())
       .then((response) => {
         dispatch('applyPagination', { response, paginationName: 'workout' });
         commit('setWorkouts', response.data.results);
@@ -48,10 +48,10 @@ const actions = {
    */
   fetchDatabaseExercises({ dispatch, commit }, page) {
     Vue.axios
-      .get(`gym/list_db_exercises/?=${page}`)
+      .get(`gym/list_db_exercises/?page=${page}`)
       .then((response) => {
         dispatch('applyPagination', { response, paginationName: 'databaseExercises' });
-        commit('setDatabaseExercises');
+        commit('setDatabaseExercises', response.data.results);
       })
       .catch(error => commit('setError', error));
   },
@@ -60,12 +60,12 @@ const actions = {
    * @param dispatch - Vuex function which calls actions.
    * @param commit - Vuex function which calls mutations.
    * @param getters - Vuex object which stores getters.
-   * @param id - user id.
+   * @param id - workout id.
    * @param page - requested page number.
    */
   fetchWorkoutExercises({ dispatch, commit, getters }, { id, page }) {
     Vue.axios
-      .get(`gym/list_exercises/user/${id}/?=${page}`, getters.getAuthHeaders())
+      .get(`gym/list_exercises/user/${id}/?page=${page}`, getters.getAuthHeaders())
       .then((response) => {
         dispatch('applyPagination', { response, paginationName: 'workoutExercises' });
         commit('setWorkoutExercises', response.data.results);
@@ -93,11 +93,27 @@ const actions = {
 
 const mutations = {
   /**
-   * Sets list of exercises.
+   * Sets list of workouts.
    * @param state - Vuex object which stores states.
-   * @param exercises - exercises list.
+   * @param workouts - list of workouts.
    */
-  setExercises(state, exercises) {
+  setWorkouts(state, workouts) {
+    state.workouts = workouts;
+  },
+  /**
+   * Sets list of database exercises.
+   * @param state - Vuex object which stores states.
+   * @param exercises - database exercises list.
+   */
+  setDatabaseExercises(state, exercises) {
+    state.databaseExercises = exercises;
+  },
+  /**
+   * Sets list of exercises of specific workout.
+   * @param state - Vuex object which stores states.
+   * @param exercises - workout exercises list.
+   */
+  setWorkoutExercises(state, exercises) {
     state.exercises = exercises;
   },
   /**

@@ -13,7 +13,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+$main-color: #7a7a7a;
+
 footer {
-  border-top: 1px solid #dcdcdc;
+  border-top: 1px solid $main-color;
+  color: $main-color;
 }
 </style>

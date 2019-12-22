@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import DatabaseExercise from '@/components/DatabaseExercise.vue';
 import Paginator from '@/components/Paginator.vue';
 
@@ -20,6 +20,20 @@ export default {
 
   computed: {
     ...mapGetters(['getDatabaseExercisesIds']),
+  },
+
+  methods: {
+    ...mapActions(['fetchDatabaseExercises']),
+  },
+
+  watch: {
+    '$route.params.page': function (page) { // eslint-disable-line func-names
+      this.fetchDatabaseExercises(page || 1);
+    },
+  },
+
+  created() {
+    this.fetchDatabaseExercises(this.$route.params.page || 1);
   },
 };
 </script>

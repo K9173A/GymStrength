@@ -1,30 +1,20 @@
 <template>
-<div class="content-wrapper">
-  <div class="masthead">
-    <div class="container">
-      <div class="row">
-        <div class="col-7 masthead__content">
-          <div class="masthead__title text-uppercase">
-            What is GymStrength?
-          </div>
-          <div class="masthead__text text-justify">
-            For every sportsman and healthy lifestyle enthusiast, who trains in a gym, creation and
-            maintenance of training plan is important part of his/her progress. If particular
-            training system or complex is being composed incorrectly, most likely it will eventually
-            cause so-called "plate state" - when you stuck and can't progress anymore. In some cases
-            it can even cause regression in weights. This is where you need GymStrength! So what is
-            exactly GymStrength? It's a software/service which helps to compose and maintain
-            training plan. Furthermore, it has embedded analysis modules which are very useful for
-            tracking own progress.
-          </div>
-        </div>
+<div class="masthead">
+  <div class="d-flex justify-content-center">
+    <div class="my-auto">
+      <div class="my-2 masthead__title">
+        Want to be strong?
       </div>
-      <div class="row mt-4 justify-content-center">
-        <a href="#" class="btn btn-primary">
-          Try now!
-        </a>
+      <div class="my-2 masthead__text">
+        GymStrength - your way of planning gym workouts
+      </div>
+      <div class="d-flex justify-content-center">
+        <router-link :to="{ name: 'registration' }" class="my-4 masthead__btn">
+          Get started
+        </router-link>
       </div>
     </div>
+    <img src="../assets/img/kk.png" alt="kk">
   </div>
 </div>
 </template>
@@ -36,37 +26,47 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.content-wrapper {
-  margin-top: 0;
-}
-
-.container {
-  margin-left: 96px;
-}
+$main-color: #ececec;
 
 .masthead {
+  padding: 32px;
   min-height: 800px;
-  background: url("../assets/img/barbell.jpg") no-repeat;
-  background-size: cover;
-  color: #ffffff;
-
-  @at-root #{&}__content {
-    margin-top: 96px;
-    padding: 32px;
-    border-radius: 5%;
-    background-color: rgba(0, 78, 195, 0.68);
-  }
+  color: $main-color;
 
   @at-root #{&}__title {
-    font-size: 2.75rem;
+    font-size: 2.5rem;
+    font-weight: 600;
     text-align: center;
-    font-weight: bold;
-    letter-spacing: 3px;
+    letter-spacing: 7px;
+    text-transform: uppercase;
   }
 
   @at-root #{&}__text {
-    font-size: 1.5rem;
-    text-align: justify;
+    font-size: 1.2rem;
+    text-align: center;
+    letter-spacing: 3px;
+    text-transform: uppercase;
   }
+
+  @at-root #{&}__btn {
+    padding: 16px 64px 16px 64px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 3px solid $main-color;
+    color: $main-color;
+    user-select: none;
+    transition: all .3s;
+    &:hover {
+      border: 3px solid #ffdc0a;
+      color: #ffdc0a;
+    }
+  }
+}
+
+img {
+  width: 500px;
 }
 </style>

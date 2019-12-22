@@ -40,7 +40,7 @@ import { mapActions } from 'vuex';
 import Workout from '@/components/Workout.vue';
 
 export default {
-  name: 'Plan',
+  name: 'Workouts',
 
   components: { Workout },
 

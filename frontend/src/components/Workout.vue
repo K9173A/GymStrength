@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import Exercise from '@/components/WorkoutExercise.vue';
 import WorkoutSetModal from '@/components/WorkoutSetModal.vue';
 
@@ -33,6 +33,14 @@ export default {
 
   computed: {
     ...mapGetters(['getExercisesIds']),
+  },
+
+  methods: {
+    ...mapActions(['fetchWorkouts']),
+  },
+
+  created() {
+    this.fetchWorkouts({ id: 1, page: 1 });
   },
 };
 </script>

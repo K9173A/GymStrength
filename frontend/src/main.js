@@ -12,7 +12,7 @@ import '@/assets/css/style.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faUser, faSearch, faCaretDown, faPlus, faTimesCircle,
-  faGripLinesVertical, faTimes, faCheck, faEllipsisV,
+  faGripLinesVertical, faTimes, faCheck, faEllipsisV, faDumbbell,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -23,13 +23,14 @@ import router from './router';
 
 library.add(
   faUser, faSearch, faCaretDown, faPlus, faTimesCircle,
-  faGripLinesVertical, faTimes, faCheck, faEllipsisV,
+  faGripLinesVertical, faTimes, faCheck, faEllipsisV, faDumbbell,
 );
 
 Vue.use(VueAxios, axios);
 Vue.use(BootstrapVue);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
+Vue.axios.defaults.baseURL = 'http://127.0.0.1:8000/api';
 Vue.config.productionTip = false;
 
 new Vue({

@@ -54,8 +54,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+$main-color: #ececec;
+
+
+.nav-link,
 .nav-link--main {
-  color: #ffffff;
+  color: #ececec;
 }
 
 .dropdown {
@@ -63,6 +67,7 @@ export default {
     visibility: visible;
     opacity: 1;
   }
+
   #{&}__content {
     width: 100%;
     visibility: hidden;
@@ -70,8 +75,8 @@ export default {
     z-index: 1;
     position: absolute;
     transition: opacity 0.3s linear;
-    background-color: #ffffff;
-    border: 2px solid #afafaf;
+    border: 2px solid #ececec;
+    color: $main-color;
     padding: 6px;
     font-size: 1rem;
     text-transform: none;
