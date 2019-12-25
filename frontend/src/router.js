@@ -43,20 +43,20 @@ const router = new Router({
       component: () => import('./views/About.vue'),
     },
     {
-      path: '/register',
+      path: '/users/register',
       name: 'registration',
       component: () => import('./views/Registration.vue'),
+    },
+    {
+      path: '/users/login',
+      name: 'login',
+      component: () => import('./views/Login.vue'),
     },
     // {
     //   path: '/activate/:uid/:token',
     //   name: 'activation',
     //   props: true,
     //   component: () => import(),
-    // },
-    // {
-    //   path: '/login',
-    //   name: 'login',
-    //   component: () => import('./components/form/Login.vue'),
     // },
     {
       path: '*',

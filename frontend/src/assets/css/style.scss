@@ -42,3 +42,39 @@ body {
     margin-bottom: 0;
   }
 }
+
+.gs-form {
+  .form {
+    margin-top: 16px;
+    max-width: 30rem;
+  }
+
+  .card {
+    background-color: #7a7a7a;
+    color: #ececec;
+  }
+
+  .small-text {
+    color: #ececec;
+  }
+
+  .form-btn {
+    height: 100%;
+    padding: 4px 8px 4px 8px;
+    width: 64px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    user-select: none;
+    border: none;
+    color: #ececec;
+    background-color: #595959;
+    transition: all .3s;
+    &:hover {
+      background-color: #4a4a4a;
+      color: #ffdc0a;
+    }
+  }
+}

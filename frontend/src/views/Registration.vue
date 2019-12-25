@@ -1,7 +1,7 @@
 <template>
-<div class="container">
+<div class="gs-form container">
   <div class="row justify-content-center">
-    <div class="col-6">
+    <div class="col-5">
       <div class="card form">
         <div class="card-body">
           <form id="register-form">
@@ -42,22 +42,24 @@
               <input type="password" class="form-control" id="idPasswordRepeat" v-model="password2">
             </div>
           </form>
-          <p class="text-secondary">
+          <p class="small-text">
             By clicking "Sign up", you agree to our
             <a href="#">terms of service</a>,
             <a href="#">privacy policy</a> and
             <a href="#">cookie policy</a>
           </p>
           <div class="d-flex justify-content-around p-2">
-            <button @click="$router.push({ name: 'index' })" class="btn btn-primary col-5">
+            <button @click="$router.push({ name: 'index' })" class="form-btn col-5">
               Cancel
             </button>
-            <input type="submit" class="btn btn-primary col-5" form="register-form" value="Sign Up">
+            <input type="submit" class="form-btn col-5" form="register-form" value="Sign Up">
           </div>
           <hr>
-          <p class="text-secondary">
+          <p class="small-text">
             Already have an account?
-            <a href="#">Log In</a>
+            <router-link :to="{ name: 'login' }" class="nav-link">
+              Log in
+            </router-link>
           </p>
         </div>
       </div>
@@ -100,11 +102,6 @@ export default {
 </script>
 
 <style scoped>
-.form {
-  margin-top: 16px;
-  max-width: 30rem;
-}
-
 .optional::after {
   content: '*';
   color: red;
