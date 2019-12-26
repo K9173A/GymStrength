@@ -52,12 +52,12 @@ const router = new Router({
       name: 'login',
       component: () => import('./views/Login.vue'),
     },
-    // {
-    //   path: '/activate/:uid/:token',
-    //   name: 'activation',
-    //   props: true,
-    //   component: () => import(),
-    // },
+    {
+      path: '/users/activate/:uid/:token',
+      name: 'activation',
+      props: true,
+      component: () => import('./views/Activation.vue'),
+    },
     {
       path: '*',
       redirect: '/',

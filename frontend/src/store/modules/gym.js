@@ -14,11 +14,11 @@ const state = {
     },
   },
   databaseExercises: {
-    1: {
-      name: 'Bench press',
-      description: 'This is bench press description!',
-      image: null,
-    },
+    // 1: {
+    //   name: 'Bench press',
+    //   description: 'This is bench press description!',
+    //   image: null,
+    // },
   },
 };
 

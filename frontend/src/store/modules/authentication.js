@@ -65,6 +65,17 @@ const actions = {
       .then(() => this.$router.push({ name: 'index' }))
       .catch(error => commit('setError', error));
   },
+  /**
+   * Sends uid and token to confirm user account activation.
+   * @param commit - Vuex function which calls mutations.
+   * @param credentials - user's uid and token.
+   */
+  activate({ commit }, credentials) {
+    Vue.axios
+      .post('auth/users/activation/', credentials)
+      .then(() => this.$router.push({ name: 'index' }))
+      .catch(error => commit('setError', error));
+  },
 };
 
 const mutations = {
