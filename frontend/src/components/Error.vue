@@ -1,37 +1,64 @@
 <template>
-<div class="my-4 error-container">
-  <div v-if="errors" class="row">
-    <div v-for="error in errors" :key="error" class="col error">
-      {{ error }}
+<div v-if="getErrors" class="container">
+  <div class="row">
+    <div class="col">
+      <div v-for="(error, index) in getErrors" :key="error" class="error">
+        <span class="error__text">
+          {{ error }}
+        </span>
+        <button type="button" @click="removeError(index)" class="error__btn">
+          <font-awesome-icon icon="times" size="lg"/>
+        </button>
+      </div>
     </div>
   </div>
 </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'Error',
 
   computed: {
-    ...mapState({ errors: state => state.errorHandler.errors }),
+    ...mapGetters(['getErrors']),
+  },
+
+  methods: {
+    ...mapMutations(['removeError']),
   },
 };
 </script>
 
-<style scoped>
-.error-container {
-  min-width: 400px;
-}
+<style scoped lang="scss">
 .error {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
-  font-size: 0.75rem;
-  font-weight: bold;
-  padding: 8px;
-  color: #721c24;
-  background-color: #f8d7da;
   margin-bottom: 4px;
-  border-radius: .25rem;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #ca0b1f;
+
+  @at-root #{&}__text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ececec;
+  }
+
+  @at-root #{&}__btn {
+    padding: 4px;
+    border: none;
+    background: none;
+    color: #ececec;
+    transition: 0.3s;
+    &:hover {
+      color: #ffffff;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
 }
 </style>

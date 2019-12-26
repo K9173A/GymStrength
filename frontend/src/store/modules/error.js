@@ -1,11 +1,14 @@
+const state = {
+  errors: [],
+};
+
 const mutations = {
   /**
    * Sets new error.
-   * @param state - Vuex state object.
+   * @param state - Vuex object which stores states.
    * @param error - response object.
    */
   setError(state, error) {
-    state.errors = [];
     if (error.response) {
       if (error.response.status === 500) {
         state.errors.push('500 Internal server error.');
@@ -31,19 +34,34 @@ const mutations = {
       state.errors.push(error.message);
     }
   },
-
+  /**
+   * Removes error from the list.
+   * @param state - Vuex object which stores states.
+   * @param index - error index in the array.
+   */
+  removeError(state, index) {
+    state.errors.splice(index, 1);
+  },
+  /**
+   * Removes all errors from the list.
+   * @param state - Vuex object which stores states.
+   */
   clear(state) {
-    if (state) {
-      state.errors = [];
-    }
+    state.errors = [];
   },
 };
 
-const state = {
-  errors: [],
+const getters = {
+  /**
+   * Gets list of errors.
+   * @param state - Vuex object which stores states.
+   * @returns {Array} list of errors.
+   */
+  getErrors: state => state.errors,
 };
 
 export default {
   mutations,
   state,
+  getters,
 };

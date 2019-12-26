@@ -2,6 +2,7 @@
   <div id="app">
     <div class="layout-wrapper">
       <Header/>
+      <Error/>
       <router-view/>
     </div>
     <Footer/>
@@ -11,9 +12,11 @@
 <script>
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
+import Error from '@/components/Error.vue';
 
 export default {
   components: {
+    Error,
     Header,
     Footer,
   },

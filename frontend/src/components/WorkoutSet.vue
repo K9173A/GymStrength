@@ -11,7 +11,7 @@
   </span>
   <button type="button" class="gs-workout-set__edit"
           data-toggle="modal" data-target="#modal-create-product">
-    <font-awesome-icon icon="ellipsis-v" />
+    <font-awesome-icon icon="ellipsis-v"/>
   </button>
 </div>
 </template>

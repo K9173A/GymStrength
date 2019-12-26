@@ -52,7 +52,8 @@
             <button @click="$router.push({ name: 'index' })" class="form-btn col-5">
               Cancel
             </button>
-            <input type="submit" class="form-btn col-5" form="register-form" value="Sign Up">
+            <input type="submit" @click="submit" class="form-btn col-5" form="register-form"
+                   value="Sign Up">
           </div>
           <hr>
           <p class="small-text">
