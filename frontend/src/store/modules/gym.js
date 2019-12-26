@@ -214,6 +214,18 @@ const getters = {
    */
   getDatabaseExerciseDescription:
       state => exerciseId => state.databaseExercises[exerciseId].description,
+  /**
+   * Gets database exercise image path.
+   * @param state - Vuex object which stores states.
+   * @returns {string} database exercise image path.
+   */
+  getDatabaseExerciseImage: state => (exerciseId) => {
+    let { image } = state.databaseExercises[exerciseId];
+    if (!image) {
+      image = 'https://via.placeholder.com/256';
+    }
+    return image;
+  },
 };
 
 export default {

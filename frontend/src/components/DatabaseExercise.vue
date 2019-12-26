@@ -1,16 +1,13 @@
 <template>
 <div class="gs-exercise">
-  <div class="gs-exercise-header d-flex">
-    <div class="col-1 gs-exercise-header__number">
-      # {{ exerciseId }}
-    </div>
-    <div class="col gs-exercise-header__name">
-      {{ getDatabaseExerciseName(exerciseId) }}
-    </div>
+  <div class="gs-exercise__header">
+    {{ getDatabaseExerciseName(exerciseId) }}
   </div>
-  <img src="https://via.placeholder.com/256" alt="exercise">
-  <div class="gs-exercise-body">
-    {{ getDatabaseExerciseDescription(exerciseId) }}
+  <div class="gs-exercise__body">
+    <img :src="getDatabaseExerciseImage(exerciseId)" alt="exercise">
+    <p class="gs-exercise__text">
+      {{ getDatabaseExerciseDescription(exerciseId) }}
+    </p>
   </div>
 </div>
 </template>
@@ -27,11 +24,36 @@ export default {
     ...mapGetters([
       'getDatabaseExerciseName',
       'getDatabaseExerciseDescription',
+      'getDatabaseExerciseImage',
     ]),
   },
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.gs-exercise {
+  max-height: 290px;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 8px;
 
+  @at-root #{&}__header {
+    padding: 0 16px 0 16px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    background-color: #4e4e4e;
+  }
+
+  @at-root #{&}__body {
+    display: flex;
+    background-color: #6e6e6e;
+  }
+
+  @at-root #{&}__text {
+    padding: 16px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: justify;
+  }
+}
 </style>
