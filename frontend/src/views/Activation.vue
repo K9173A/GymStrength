@@ -27,7 +27,7 @@ export default {
     this.activate({
       uid: this.$props.uid,
       token: this.$props.token,
-    });
+    }).then(() => this.$router.push({ name: 'index' }));
   },
 };
 </script>

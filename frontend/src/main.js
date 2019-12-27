@@ -20,7 +20,6 @@ import App from './App.vue';
 import store from './store';
 import router from './router';
 
-
 library.add(
   faUser, faSearch, faCaretDown, faPlus, faTimesCircle,
   faGripLinesVertical, faTimes, faCheck, faEllipsisV, faDumbbell,

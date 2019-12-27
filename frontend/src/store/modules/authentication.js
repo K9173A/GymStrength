@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import router from '../../router';
+
 
 const state = {
   accessTokenKey: 'jwtAccessToken',
@@ -14,7 +16,6 @@ const actions = {
   verifyToken({ commit, getters }) {
     Vue.axios
       .post('auth/jwt/verify', { token: getters.getAccessToken() })
-      .then(() => true)
       .catch(error => commit('setError', error));
   },
   /**
@@ -28,7 +29,6 @@ const actions = {
       .then((response) => {
         commit('setAccessToken', response.data.access);
         commit('setRefreshToken', response.data.refresh);
-        return true;
       })
       .catch(error => commit('setError', error));
   },
@@ -43,7 +43,7 @@ const actions = {
       .then((response) => {
         commit('setAccessToken', response.data.access);
         commit('setRefreshToken', response.data.refresh);
-        Vue.$router.push({ name: 'index' });
+        router.push({ name: 'index' });
       })
       .catch(error => commit('setError', error));
   },
@@ -61,9 +61,9 @@ const actions = {
    * username, firstName, lastName, email, password.
    */
   register({ commit }, credentials) {
-    Vue.axios
+    return Vue.axios
       .post('auth/users/', credentials)
-      .then(() => Vue.$router.push({ name: 'index' }))
+      .then(() => true)
       .catch(error => commit('setError', error));
   },
   /**
@@ -74,7 +74,7 @@ const actions = {
   activate({ commit }, credentials) {
     Vue.axios
       .post('auth/users/activation/', credentials)
-      .then(() => Vue.$router.push({ name: 'index' }))
+      .then(() => router.push({ name: 'index' }))
       .catch(error => commit('setError', error));
   },
 };

@@ -146,12 +146,6 @@ const getters = {
    */
   getWorkoutExerciseName: state => exerciseId => state.exercises[exerciseId].name,
   /**
-   * Gets specific set of exercise.
-   * @param state - Vuex object which stores states.
-   * @returns {object} - set object.
-   */
-  getWorkoutExerciseSet: state => (exerciseId, setId) => state.exercises[exerciseId].sets[setId],
-  /**
    * Gets object with all sets ids for the specified exercise.
    * @param state - Vuex object which stores states.
    * @returns {object} object which contains all sets ids for the specified

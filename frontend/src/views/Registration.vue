@@ -96,7 +96,7 @@ export default {
         lastName: this.lastName,
         email: this.email,
         password: this.password,
-      });
+      }).then(() => this.$router.push({ name: 'index' }));
     },
   },
 };
