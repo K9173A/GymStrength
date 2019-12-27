@@ -160,9 +160,9 @@ REST_FRAMEWORK = {
 # Djoser settings
 # ============================================================================
 DJOSER = {
-    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
-    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
-    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'PASSWORD_RESET_CONFIRM_URL': '#/users/password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': '#/users/username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': '#/users/activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
     'SERIALIZERS': {},
     'EMAIL': {'activation': 'api.authapp.views.ActivationEmailView'}

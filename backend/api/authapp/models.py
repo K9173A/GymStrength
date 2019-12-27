@@ -33,6 +33,7 @@ class UserProfile(models.Model):
     avatar = models.ImageField(
         verbose_name='avatar',
         upload_to=settings.USER_AVATARS_DIR_NAME,
+        null=True,
         blank=True
     )
     gender = models.IntegerField(
@@ -42,10 +43,12 @@ class UserProfile(models.Model):
     )
     height = models.IntegerField(
         verbose_name='height',
+        null=True,
         blank=True
     )
     weight = models.IntegerField(
         verbose_name='weight',
+        null=True,
         blank=True
     )
 

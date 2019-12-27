@@ -16,9 +16,11 @@ class DatabaseExercise(models.Model):
     )
     description = models.TextField(
         max_length=256,
+        null=True,
         blank=True
     )
     image = models.ImageField(
+        null=True,
         blank=True
     )
     is_active = models.BooleanField(

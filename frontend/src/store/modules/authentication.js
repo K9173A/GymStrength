@@ -8,13 +8,14 @@ const state = {
 const actions = {
   /**
    * Validates JWT access token.
+   * @param commit - Vuex function which calls mutations.
    * @param getters - Vuex object which stores getters.
    */
-  verifyToken({ getters }) {
+  verifyToken({ commit, getters }) {
     Vue.axios
       .post('auth/jwt/verify', { token: getters.getAccessToken() })
       .then(() => true)
-      .catch(() => false);
+      .catch(error => commit('setError', error));
   },
   /**
    * Refreshes JWT access token using JWT refresh token.
@@ -29,7 +30,7 @@ const actions = {
         commit('setRefreshToken', response.data.refresh);
         return true;
       })
-      .catch(() => false);
+      .catch(error => commit('setError', error));
   },
   /**
    * Logs user in by acquiring pair of JWT tokens.
@@ -42,7 +43,7 @@ const actions = {
       .then((response) => {
         commit('setAccessToken', response.data.access);
         commit('setRefreshToken', response.data.refresh);
-        this.$router.push({ name: 'index' });
+        Vue.$router.push({ name: 'index' });
       })
       .catch(error => commit('setError', error));
   },
@@ -62,7 +63,7 @@ const actions = {
   register({ commit }, credentials) {
     Vue.axios
       .post('auth/users/', credentials)
-      .then(() => this.$router.push({ name: 'index' }))
+      .then(() => Vue.$router.push({ name: 'index' }))
       .catch(error => commit('setError', error));
   },
   /**
@@ -73,7 +74,7 @@ const actions = {
   activate({ commit }, credentials) {
     Vue.axios
       .post('auth/users/activation/', credentials)
-      .then(() => this.$router.push({ name: 'index' }))
+      .then(() => Vue.$router.push({ name: 'index' }))
       .catch(error => commit('setError', error));
   },
 };
