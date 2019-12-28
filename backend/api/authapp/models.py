@@ -57,7 +57,7 @@ class UserProfile(models.Model):
         Human-readable representation of user profile.
         :return: string user name and email.
         """
-        return f'Profile of {self.user.name} ({self.user.email})'
+        return f'Profile of {self.user.email}'
 
 
 @receiver(user_activated)
