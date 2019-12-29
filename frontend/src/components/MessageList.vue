@@ -1,12 +1,13 @@
 <template>
-<div v-if="getErrors" class="container">
+<div class="container">
   <div class="row">
     <div class="col">
-      <div v-for="(error, index) in getErrors" :key="error" class="error">
-        <span class="error__text">
-          {{ error }}
+      <div v-for="(message, id) in getMessages" :key="id"
+           class="message-box" :class="message.messageType">
+        <span class="message-box__text">
+          {{ message.messageText }}
         </span>
-        <button type="button" @click="removeError(index)" class="error__btn">
+        <button type="button" @click="removeMessage(id)" class="message-box__btn">
           <font-awesome-icon icon="times" size="lg"/>
         </button>
       </div>
@@ -19,30 +20,31 @@
 import { mapGetters, mapMutations } from 'vuex';
 
 export default {
-  name: 'Error',
+  name: 'MessageList',
 
   computed: {
-    ...mapGetters(['getErrors']),
+    ...mapGetters(['getMessages']),
   },
 
   methods: {
-    ...mapMutations(['removeError']),
+    ...mapMutations(['removeMessage']),
   },
 };
 </script>
 
 <style scoped lang="scss">
-.error {
+.message-box {
   display: flex;
   justify-content: space-between;
   width: 100%;
   margin-bottom: 4px;
-  padding: 16px;
-  border-radius: 8px;
-  background-color: #ca0b1f;
+  padding: 8px;
+  border-radius: 4px;
 
   @at-root #{&}__text {
-    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
     font-weight: 700;
     color: #ececec;
   }
@@ -60,5 +62,17 @@ export default {
       outline: none;
     }
   }
+}
+
+.error {
+  background-color: #ff0b1f;
+}
+
+.info {
+  background-color: #6f6f6f;
+}
+
+.success {
+  background-color: #00c739;
 }
 </style>

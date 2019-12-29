@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import router from '../../router';
 
 
 const state = {
@@ -10,42 +9,43 @@ const state = {
 const actions = {
   /**
    * Validates JWT access token.
-   * @param commit - Vuex function which calls mutations.
+   * @param dispatch - Vuex function which calls actions.
    * @param getters - Vuex object which stores getters.
    */
-  verifyToken({ commit, getters }) {
+  verifyToken({ dispatch, getters }) {
     Vue.axios
       .post('auth/jwt/verify', { token: getters.getAccessToken() })
-      .catch(error => commit('setError', error));
+      .catch(error => dispatch('addErrorMessage', error));
   },
   /**
    * Refreshes JWT access token using JWT refresh token.
+   * @param dispatch - Vuex function which calls actions.
    * @param commit - Vuex function which calls mutations.
    * @param getters - Vuex object which stores getters.
    */
-  refreshToken({ commit, getters }) {
+  refreshToken({ dispatch, commit, getters }) {
     Vue.axios
       .post('auth/jwt/refresh', { refresh: getters.getRefreshToken() })
       .then((response) => {
         commit('setAccessToken', response.data.access);
         commit('setRefreshToken', response.data.refresh);
       })
-      .catch(error => commit('setError', error));
+      .catch(error => dispatch('addErrorMessage', error));
   },
   /**
    * Logs user in by acquiring pair of JWT tokens.
+   * @param dispatch - Vuex function which calls actions.
    * @param commit - Vuex function which calls mutations.
    * @param credentials - object with username and password fields.
    */
-  login({ commit }, credentials) {
+  login({ dispatch, commit }, credentials) {
     Vue.axios
       .post('auth/jwt/create/', credentials)
       .then((response) => {
         commit('setAccessToken', response.data.access);
         commit('setRefreshToken', response.data.refresh);
-        router.push({ name: 'index' });
       })
-      .catch(error => commit('setError', error));
+      .catch(error => dispatch('addErrorMessage', error));
   },
   /**
    * Logs user out by clearing his auth token.
@@ -56,26 +56,34 @@ const actions = {
   },
   /**
    * Registers user.
+   * @param dispatch - Vuex function which calls actions.
    * @param commit - Vuex function which calls mutations.
    * @param credentials - object with the following fields:
    * username, firstName, lastName, email, password.
    */
-  register({ commit }, credentials) {
-    return Vue.axios
+  register({ dispatch, commit }, credentials) {
+    Vue.axios
       .post('auth/users/', credentials)
-      .then(() => true)
-      .catch(error => commit('setError', error));
+      .then(() => commit('addMessage', {
+        messageText: 'Successful registration!',
+        messageType: 'success',
+      }))
+      .catch(error => dispatch('addErrorMessage', error));
   },
   /**
    * Sends uid and token to confirm user account activation.
+   * @param dispatch - Vuex function which calls actions.
    * @param commit - Vuex function which calls mutations.
    * @param credentials - user's uid and token.
    */
-  activate({ commit }, credentials) {
+  activate({ dispatch, commit }, credentials) {
     Vue.axios
       .post('auth/users/activation/', credentials)
-      .then(() => router.push({ name: 'index' }))
-      .catch(error => commit('setError', error));
+      .then(() => commit('addMessage', {
+        messageText: 'Successful activation!',
+        messageType: 'success',
+      }))
+      .catch(error => dispatch('addErrorMessage', error));
   },
 };
 

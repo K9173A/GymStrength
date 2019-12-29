@@ -6,10 +6,10 @@
         <div class="card-body">
           <form id="login-form">
             <div class="form-group">
-              <label for="idEmail" class="font-weight-bold">
-                Email address
+              <label for="idUsername" class="font-weight-bold">
+                Username
               </label>
-              <input type="email" class="form-control" id="idEmail" v-model="email">
+              <input type="text" class="form-control" id="idUsername" v-model="username">
             </div>
             <div class="form-group">
               <label for="idPassword" class="font-weight-bold">
@@ -22,7 +22,8 @@
             <button @click="$router.push({ name: 'index' })" class="form-btn col-5">
               Cancel
             </button>
-            <input type="submit" class="form-btn col-5" form="login-form" value="Sign Up">
+            <input type="submit" @click="submit" class="form-btn col-5" form="login-form"
+                   value="Sign Up">
           </div>
         </div>
       </div>
@@ -32,14 +33,29 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'Login',
 
   data() {
     return {
-      email: '',
+      username: '',
       password: '',
     };
+  },
+
+  methods: {
+    ...mapActions(['login', 'addErrorMessage']),
+
+    submit() {
+      this.login({
+        username: this.username,
+        password: this.password,
+      }).then(() => {
+        this.$router.push({ name: 'index' }).catch(error => this.addErrorMessage(error));
+      });
+    },
   },
 };
 </script>

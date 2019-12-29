@@ -2,7 +2,7 @@
   <div id="app">
     <div class="layout-wrapper">
       <Header/>
-      <Error/>
+      <MessageList/>
       <router-view/>
     </div>
     <Footer/>
@@ -12,11 +12,11 @@
 <script>
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
-import Error from '@/components/Error.vue';
+import MessageList from '@/components/MessageList.vue';
 
 export default {
   components: {
-    Error,
+    MessageList,
     Header,
     Footer,
   },

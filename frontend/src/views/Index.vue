@@ -28,6 +28,11 @@ export default {
 <style scoped lang="scss">
 $main-color: #ececec;
 
+.b {
+  width: 128px;
+  height: 32px;
+}
+
 .masthead {
   padding: 32px;
   min-height: 800px;

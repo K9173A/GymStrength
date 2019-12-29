@@ -25,39 +25,30 @@
         </router-link>
       </li>
       <li class="nav-item">
-        <DropdownMenu/>
-      </li>
-      <li class="nav-item">
         <router-link active-class="active" :to="{ name: 'about' }"
                      class="nav-link menu__item">
           About
         </router-link>
       </li>
     </ul>
-    <div class="col-xs-3 btn-group">
-      <router-link :to="{ name: 'index' }" class="header-btn btn-search">
-        <font-awesome-icon icon="search"/>
+    <ul class="col-xs-3 navbar-nav mx-auto">
+      <router-link :to="{ name: 'login' }" class="header-btn mx-1">
+        Log in
       </router-link>
-      <router-link :to="{ name: 'registration' }" class="header-btn btn-user">
-        <font-awesome-icon icon="user"/>
+      <router-link :to="{ name: 'registration' }" class="header-btn mx-1">
+        Sign up
       </router-link>
-    </div>
+    </ul>
   </div>
 </nav>
 </template>
 
 <script>
-import DropdownMenu from '@/components/DropdownMenu.vue';
-
 export default {
   name: 'Header',
 
-  components: { DropdownMenu },
-
   data() {
-    return {
-      isVisible: false,
-    };
+    return { isVisible: false };
   },
 };
 </script>
@@ -93,30 +84,22 @@ $main-color: #ececec;
 
 .header-btn {
   height: 100%;
-  padding: 4px 8px 4px 8px;
-  width: 64px;
+  padding: 8px;
+  min-width: 64px;
   text-align: center;
   vertical-align: middle;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
+  text-transform: uppercase;
+  border: 1px solid $main-color;
+  color: $main-color;
   user-select: none;
-  color: #1d1d1d;
-}
-
-.btn-search {
-  background-color: $main-color;
   transition: all .3s;
-  &:hover {
-    background-color: #ffffff;
-  }
-}
 
-.btn-user {
-  background-color: #00b036;
-  transition: all .3s;
   &:hover {
-    background-color: #00c739;
+    border: 1px solid #ffdc0a;
+    color: #ffdc0a;
   }
 }
 

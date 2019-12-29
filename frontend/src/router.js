@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import store from './store/index';
 
 Vue.use(Router);
 
@@ -44,15 +45,13 @@ const router = new Router({
       component: () => import('./views/Registration.vue'),
     },
     {
+      path: '/users/activate/:uid/:token',
+      name: 'activation',
+    },
+    {
       path: '/users/login',
       name: 'login',
       component: () => import('./views/Login.vue'),
-    },
-    {
-      path: '/users/activate/:uid/:token',
-      name: 'activation',
-      props: true,
-      component: () => import('./views/Activation.vue'),
     },
     {
       path: '*',
@@ -63,8 +62,8 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth) {
-    if (Vue.$store.getters.getAccessToken) {
-      if (Vue.$store.dispatch('verifyToken') || Vue.$store.dispatch('refreshToken')) {
+    if (store.getters.getAccessToken) {
+      if (store.dispatch('verifyToken') || store.dispatch('refreshToken')) {
         next();
       } else {
         next({ name: 'login' });
@@ -72,6 +71,12 @@ router.beforeEach((to, from, next) => {
     } else {
       next({ name: 'registration' });
     }
+  } else if (to.name === 'activation') {
+    store.dispatch('activate', {
+      uid: to.params.uid,
+      token: to.params.token,
+    });
+    next({ name: 'index' });
   } else {
     next();
   }

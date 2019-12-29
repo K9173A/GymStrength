@@ -38,7 +38,7 @@ const actions = {
         dispatch('applyPagination', { response, paginationName: 'workout' });
         commit('setWorkouts', response.data.results);
       })
-      .catch(error => commit('setError', error));
+      .catch(error => commit('addErrorMessage', error));
   },
   /**
    * Fetches list of database exercises.
@@ -53,7 +53,7 @@ const actions = {
         dispatch('applyPagination', { response, paginationName: 'databaseExercises' });
         commit('setDatabaseExercises', response.data.results);
       })
-      .catch(error => commit('setError', error));
+      .catch(error => commit('addErrorMessage', error));
   },
   /**
    * Fetches list of workout exercises.
@@ -70,7 +70,7 @@ const actions = {
         dispatch('applyPagination', { response, paginationName: 'workoutExercises' });
         commit('setWorkoutExercises', response.data.results);
       })
-      .catch(error => commit('setError', error));
+      .catch(error => commit('addErrorMessage', error));
   },
   /**
    * Sets new pagination information.
