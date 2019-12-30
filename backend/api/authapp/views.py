@@ -5,9 +5,42 @@ Vue.js.
 from django.conf import settings
 from django.contrib.auth.tokens import default_token_generator
 
+from rest_framework import status
+from rest_framework.decorators import api_view
 from djoser import utils
 from djoser.conf import settings as djoser_settings
 from templated_mail import mail
+from rest_framework_simplejwt import views
+
+
+@api_view(['POST'])
+def login(request, *args, **kwargs):
+    """
+    Calls Djoser's endpoint view which creates a pair of tokens (JWT) and
+    saves them into cookies storage.
+    :param request: Request object.
+    :param args: additional positional arguments.
+    :param kwargs: additional key-value arguments.
+    :return: response object with tokens.
+    """
+    response = views.TokenObtainPairView.post(request, *args, **kwargs)
+    if response.status_code == status.HTTP_200_OK:
+        response.set_cookie(
+            key='access',
+            value=response['access'],
+            expires=settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
+            domain=None,
+            secure=True,
+            httponly=True,
+        )
+        response.set_cookie(
+            key='refresh',
+            value=response['refresh'],
+            expires=settings.SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'],
+            secure=True,
+            httponly=True,
+        )
+    return response
 
 
 class ActivationEmailView(mail.BaseEmailMessage):

@@ -9,9 +9,7 @@ from django.contrib import admin
 urlpatterns = [
     path('api/gym/', include('api.gymapp.urls', namespace='gym')),
     path('api/admin/', admin.site.urls),
-    # path('api/auth/', include('api.authapp.urls', namespace='auth')),
-    path('api/auth/', include('djoser.urls')),
-    path('api/auth/', include('djoser.urls.jwt')),
+    path('api/auth/', include('api.authapp.urls', namespace='auth')),
 ]
 
 if settings.DEBUG:

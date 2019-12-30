@@ -3,46 +3,21 @@ This module defines basic settings used on both: development and production
 configuration settings.
 """
 import os
-import json
 import datetime
-from pathlib import Path
 
-from django.core.exceptions import ImproperlyConfigured
-
-from .mode import MODE
+from .config import MODE
 
 
-def get_env_var(name):
-    """
-    Retrieves specific environment variable value from configuration file.
-    :param name: environment variable name.
-    :return: environment variable value.
-    """
-    config_dir_path = os.path.join(Path(__file__).parent, 'config')
-    config_file_name = 'development.json' if MODE == 'DEV' else 'production.json'
-    config_path = os.path.join(config_dir_path, config_file_name)
-    with open(config_path) as f:
-        config_data = json.loads(f.read())
-        env_var_value = config_data.get(name)
-        if not env_var_value:
-            raise ImproperlyConfigured(
-                f'ImproperlyConfigured: set "{name}" environment variable'
-            )
-        return env_var_value
+if MODE == 'DEV':
+    from .development import *
+elif MODE == 'PROD':
+    from .production import *
+else:
+    raise ValueError('Incorrect GYMSTRENGTH_MODE variable value')
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# Secret keys are stored in the config folder files
-SECRET_KEY = get_env_var('SECRET_KEY')
-# Allowed hosts
-ALLOWED_HOSTS = get_env_var('ALLOWED_HOSTS')
-# Root user name
-DB_USER_NAME = get_env_var('DB_USER_NAME')
-# Root user password
-DB_USER_PASS = get_env_var('DB_USER_PASS')
-# Mode
-DEBUG = get_env_var('DEBUG')
 
 # ============================================================================
 # Application definition
@@ -168,11 +143,11 @@ DJOSER = {
     'EMAIL': {'activation': 'api.authapp.views.ActivationEmailView'}
 }
 
-DJOSER_GYMSTRENGTH = {
-    'protocol': 'http',
-    'domain_address': 'localhost:8080',
-    'domain_name': 'gymstrength.com',
-}
+# DJOSER_GYMSTRENGTH = {
+#     'protocol': get_env_var('PROTOCOL'),
+#     'domain_address': f'localhost:8080',
+#     'domain_name': 'gymstrength.com',
+# }
 
 # ============================================================================
 # djangorestframework_simplejwt settings
