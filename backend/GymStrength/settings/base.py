@@ -5,7 +5,12 @@ configuration settings.
 import os
 import datetime
 
-from .config import MODE
+from .config import (
+    get_env_var,
+    CONFIG_FILE_PATH,
+    CONFIG_BASE_FILE_PATH,
+    MODE,
+)
 
 
 if MODE == 'DEV':
@@ -18,6 +23,14 @@ else:
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Secret keys are stored in the config folder files
+SECRET_KEY = get_env_var(CONFIG_BASE_FILE_PATH, 'SECRET_KEY')
+# Root user name
+DB_USER_NAME = get_env_var(CONFIG_BASE_FILE_PATH, 'DB_USER_NAME')
+# Root user password
+DB_USER_PASS = get_env_var(CONFIG_BASE_FILE_PATH, 'DB_USER_PASS')
+# Allowed hosts
+ALLOWED_HOSTS = get_env_var(CONFIG_FILE_PATH, 'ALLOWED_HOSTS')
 
 # ============================================================================
 # Application definition
